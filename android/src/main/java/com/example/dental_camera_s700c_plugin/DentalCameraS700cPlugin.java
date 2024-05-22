@@ -48,20 +48,15 @@ public class DentalCameraS700cPlugin implements FlutterPlugin, MethodCallHandler
   private Handler handler = new Handler();
   private byte[] previewImageByteArray;
 
+private FlutterPluginBinding flutterBinding;
+
+
+
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+    flutterBinding=flutterPluginBinding;
     channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "dental_camera_s700c_plugin");
     channel.setMethodCallHandler(this);
-
-    mjpegView = new MjpegView(flutterPluginBinding.getApplicationContext(), null);
-
-    mStreamClient = StreamClient.getInstance();
-    mStreamClient.startServer();
-    mStreamClient.setOnStreamListener(mOnStreamListener);
-
-    flutterPluginBinding
-            .getPlatformViewRegistry()
-            .registerViewFactory("mjpeg-view-type", new MjpegViewFactory());
   }
 
   @Override
@@ -74,11 +69,29 @@ public class DentalCameraS700cPlugin implements FlutterPlugin, MethodCallHandler
         takePhoto();
         result.success("Photo capturing initiated");
         break;
+         case "init":
+        init();
+        result.success("Photo capturing initiated");
+        break;
       default:
         result.notImplemented();
         break;
     }
   }
+
+ private void init() {
+    
+    mjpegView = new MjpegView(flutterBinding.getApplicationContext(), null);
+
+    mStreamClient = StreamClient.getInstance();
+    mStreamClient.startServer();
+    mStreamClient.setOnStreamListener(mOnStreamListener);
+
+    flutterBinding
+            .getPlatformViewRegistry()
+            .registerViewFactory("mjpeg-view-type", new MjpegViewFactory());
+  }
+
 
   private void takePhoto() {
     Bitmap currentFrame = mjpegView.getLastFrame();

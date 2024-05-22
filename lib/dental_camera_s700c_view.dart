@@ -10,7 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:flutter_ffmpeg/flutter_ffmpeg.dart';
+import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
 
 bool _isRecording = false;
 
@@ -29,12 +29,16 @@ class _S700cViewState extends State<S700cView> {
   final ScreenRecorderController _screenRecorderController =
       ScreenRecorderController();
   bool get canExport => _screenRecorderController.exporter.hasFrames;
-  final FlutterFFmpeg _flutterFFmpeg = FlutterFFmpeg();
 
   @override
   void initState() {
+    asyncInit();
     super.initState();
+  }
+
+  asyncInit() async {
     platform.setMethodCallHandler(_handleMethodCall);
+    await platform.invokeMethod('init');
   }
 
   Future<dynamic> _handleMethodCall(MethodCall call) async {
@@ -290,8 +294,9 @@ class _S700cViewState extends State<S700cView> {
       // FFmpeg command to convert PNG frames to MP4
       final command = '-r 9.8 -i $framePathTemplate -vcodec mpeg4 $videoPath';
 
-      await _flutterFFmpeg.execute(command).then((rc) async {
-        if (rc == 0) {
+      await FFmpegKit.execute(command).then((esit) async {
+        final rc = await esit.getReturnCode();
+        if (rc!.getValue() == 0) {
           bool? result;
 
           try {
@@ -317,7 +322,8 @@ class _S700cViewState extends State<S700cView> {
           }
           await File(videoPath).delete();
         } else {
-          print("FFmpeg process failed with return code $rc");
+          print(
+              "[DEBUG] FFmpeg process failed with return code ${rc.getValue()}");
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text("Errore durante la conversione del video"),
@@ -327,7 +333,7 @@ class _S700cViewState extends State<S700cView> {
         }
       });
     } catch (e) {
-      //print("[DEBUG] Error during frame to video conversion: $e");
+      print("[DEBUG] Error during frame to video conversion: $e");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("Errore durante la conversione del video: $e"),
@@ -414,21 +420,18 @@ class _S700cViewState extends State<S700cView> {
             else ...[
               Expanded(
                 child: Center(
-                  child: RotatedBox(
-                    quarterTurns: 1,
-                    child: ScreenRecorder(
-                      background: Colors.red,
-                      height: MediaQuery.of(context).size.width / 1.49,
-                      width: MediaQuery.of(context).size.width,
-                      controller: _screenRecorderController,
-                      child: Platform.isIOS
-                          ? const UiKitView(
-                              viewType: 'my_uikit_view',
-                            )
-                          : const AndroidView(
-                              viewType: 'mjpeg-view-type',
-                            ),
-                    ),
+                  child: ScreenRecorder(
+                    background: Colors.black,
+                    height: MediaQuery.of(context).size.width / 1.49,
+                    width: MediaQuery.of(context).size.width,
+                    controller: _screenRecorderController,
+                    child: Platform.isIOS
+                        ? const UiKitView(
+                            viewType: 'my_uikit_view',
+                          )
+                        : const AndroidView(
+                            viewType: 'mjpeg-view-type',
+                          ),
                   ),
                 ),
               ),
@@ -468,6 +471,8 @@ class _S700cViewState extends State<S700cView> {
   }
 }
 
+_CameraMode _mode = _CameraMode.photo;
+
 class _FinalButtonRow extends StatefulWidget {
   const _FinalButtonRow(
       {required this.fotoCallBack, required this.videoCallBack});
@@ -478,7 +483,6 @@ class _FinalButtonRow extends StatefulWidget {
 }
 
 class __FinalButtonRowState extends State<_FinalButtonRow> {
-  _CameraMode mode = _CameraMode.photo;
   Timer? videoTimer;
 
   final cnt = StreamController<String?>.broadcast();
@@ -568,7 +572,7 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                 highlightColor: Colors.transparent,
                 splashFactory: NoSplash.splashFactory,
                 onTap: () async {
-                  if (mode == _CameraMode.photo) {
+                  if (_mode == _CameraMode.photo) {
                     widget.fotoCallBack();
                   } else {
                     await widget.videoCallBack();
@@ -607,13 +611,13 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                                       // if (mode == _CameraMode.photo) {
                                       //   mode = _CameraMode.video;
                                       // } else {
-                                      mode = _CameraMode.photo;
+                                      _mode = _CameraMode.photo;
                                       //  }
                                       setState(() {});
                                     },
                                     child: Icon(
                                       Icons.camera_alt_outlined,
-                                      color: mode == _CameraMode.photo
+                                      color: _mode == _CameraMode.photo
                                           ? Colors.teal
                                           : Colors.white.withOpacity(0.7),
                                       size: 35,
@@ -623,7 +627,7 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                                     'Foto',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        color: mode == _CameraMode.photo
+                                        color: _mode == _CameraMode.photo
                                             ? Colors.teal
                                             : Colors.black),
                                   )
@@ -640,13 +644,13 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                                     // if (mode == _CameraMode.photo) {
                                     //   mode = _CameraMode.video;
                                     // } else {
-                                    mode = _CameraMode.video;
+                                    _mode = _CameraMode.video;
                                     //  }
                                     setState(() {});
                                   },
                                   child: Icon(
                                     Icons.videocam_outlined,
-                                    color: mode == _CameraMode.video
+                                    color: _mode == _CameraMode.video
                                         ? Colors.teal
                                         : Colors.white.withOpacity(0.7),
                                     size: 35,
@@ -656,7 +660,7 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                                   'Video',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
-                                      color: mode == _CameraMode.video
+                                      color: _mode == _CameraMode.video
                                           ? Colors.teal
                                           : Colors.black),
                                 )
