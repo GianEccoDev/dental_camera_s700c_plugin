@@ -18,7 +18,7 @@ dependencies:
   permission_handler: ^11.3.1
   screen_recorder: ^0.2.0
   image: ^3.0.1
-  ffmpeg_kit_flutter: ^6.0.3
+  flutter_ffmpeg: ^0.4.2
 
   open_settings_plus: ^0.3.3
 

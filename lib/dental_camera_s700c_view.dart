@@ -10,7 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
+import 'package:flutter_ffmpeg/flutter_ffmpeg.dart';
 
 bool _isRecording = false;
 
@@ -23,7 +23,7 @@ class S700cView extends StatefulWidget {
 
 class _S700cViewState extends State<S700cView> {
   static const platform = MethodChannel('dental_camera_s700c_plugin');
-
+  final FlutterFFmpeg _flutterFFmpeg = FlutterFFmpeg();
   bool isExporting = false;
   double angle = 0.0;
   final ScreenRecorderController _screenRecorderController =
@@ -294,9 +294,8 @@ class _S700cViewState extends State<S700cView> {
       // FFmpeg command to convert PNG frames to MP4
       final command = '-r 9.8 -i $framePathTemplate -vcodec mpeg4 $videoPath';
 
-      await FFmpegKit.execute(command).then((esit) async {
-        final rc = await esit.getReturnCode();
-        if (rc!.getValue() == 0) {
+      await _flutterFFmpeg.execute(command).then((rc) async {
+        if (rc == 0) {
           bool? result;
 
           try {
@@ -322,8 +321,7 @@ class _S700cViewState extends State<S700cView> {
           }
           await File(videoPath).delete();
         } else {
-          print(
-              "[DEBUG] FFmpeg process failed with return code ${rc.getValue()}");
+          print("[DEBUG] FFmpeg process failed with return code $rc");
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text("Errore durante la conversione del video"),
@@ -420,18 +418,24 @@ class _S700cViewState extends State<S700cView> {
             else ...[
               Expanded(
                 child: Center(
-                  child: ScreenRecorder(
-                    background: Colors.black,
-                    height: MediaQuery.of(context).size.width / 1.49,
+                  child: SizedBox(
                     width: MediaQuery.of(context).size.width,
-                    controller: _screenRecorderController,
-                    child: Platform.isIOS
-                        ? const UiKitView(
-                            viewType: 'my_uikit_view',
-                          )
-                        : const AndroidView(
-                            viewType: 'mjpeg-view-type',
-                          ),
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: ScreenRecorder(
+                        background: Colors.black,
+                        height: 480,
+                        width: 640,
+                        controller: _screenRecorderController,
+                        child: Platform.isIOS
+                            ? const UiKitView(
+                                viewType: 'my_uikit_view',
+                              )
+                            : const AndroidView(
+                                viewType: 'mjpeg-view-type',
+                              ),
+                      ),
+                    ),
                   ),
                 ),
               ),
