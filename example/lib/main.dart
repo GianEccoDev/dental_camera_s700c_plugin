@@ -1,9 +1,6 @@
-import 'package:dental_camera_s700c_plugin/testa.dart';
+import 'package:dental_camera_s700c_plugin/dental_camera_s700c_view.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-
 import 'package:flutter/services.dart';
-import 'package:dental_camera_s700c_plugin/dental_camera_s700c_plugin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,40 +14,36 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // ignore: unused_field
-  String _platformVersion = 'Unknown';
-  final _dentalCameraS700cPlugin = DentalCameraS700cPlugin();
-
   @override
-  void initState() {
-    super.initState();
-    initPlatformState();
+  Widget build(BuildContext context) {
+    return const MaterialApp(home: Home());
   }
+}
 
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    try {
-      platformVersion = await _dentalCameraS700cPlugin.getPlatformVersion() ??
-          'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
-  }
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Plugin example app'),
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Plugin example app'),
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            systemNavigationBarColor: Colors.white,
+            systemNavigationBarIconBrightness: Brightness.dark,
+            statusBarIconBrightness: Brightness.dark,
+            statusBarBrightness: Brightness.dark,
           ),
-          body: MyHomePage()),
-    );
+        ),
+        body: Center(
+          child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const S700cView(),
+                ));
+              },
+              child: const Text('Inizia')),
+        ));
   }
 }
