@@ -1,0 +1,6 @@
+module dental_camera_s700c_plugin {
+  umbrella header "dental_camera_s700c_plugin-umbrella.h"
+
+  export *
+  module * { export * }
+}

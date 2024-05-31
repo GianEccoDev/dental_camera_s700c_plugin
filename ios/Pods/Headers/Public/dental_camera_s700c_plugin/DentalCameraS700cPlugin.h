@@ -1,0 +1,1 @@
+../../../../.symlinks/plugins/dental_camera_s700c_plugin/ios/Classes/DentalCameraS700cPlugin.h
