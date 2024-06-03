@@ -500,12 +500,15 @@ class _S700cViewState extends State<S700cView> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         backgroundColor: Colors.black,
-        systemOverlayStyle: const SystemUiOverlayStyle(
+        systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           systemNavigationBarColor: Colors.black,
-          systemNavigationBarIconBrightness: Brightness.light,
-          statusBarIconBrightness: Brightness.light,
-          statusBarBrightness: Brightness.light,
+          systemNavigationBarIconBrightness:
+              Platform.isAndroid ? Brightness.light : Brightness.dark,
+          statusBarIconBrightness:
+              Platform.isAndroid ? Brightness.light : Brightness.dark,
+          statusBarBrightness:
+              Platform.isAndroid ? Brightness.light : Brightness.dark,
         ),
       ),
       body: Center(
