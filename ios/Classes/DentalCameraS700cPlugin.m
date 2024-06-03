@@ -1,5 +1,5 @@
 #import "DentalCameraS700cPlugin.h"
-#import "AppDelegate.h"
+// #import "AppDelegate.h"
 #import "GeneratedPluginRegistrant.h"
 #import "CameraView.h"
 
