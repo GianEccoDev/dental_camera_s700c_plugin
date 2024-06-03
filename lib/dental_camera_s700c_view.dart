@@ -452,7 +452,7 @@ class _S700cViewState extends State<S700cView> {
           }
           await File(videoPath).delete();
         } else {
-          print("[DEBUG] FFmpeg process failed with return code $rc");
+          //print("[DEBUG] FFmpeg process failed with return code $rc");
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text("Errore durante la conversione del video"),
@@ -462,7 +462,7 @@ class _S700cViewState extends State<S700cView> {
         }
       });
     } catch (e) {
-      print("[DEBUG] Error during frame to video conversion: $e");
+      // print("[DEBUG] Error during frame to video conversion: $e");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("Errore durante la conversione del video: $e"),
