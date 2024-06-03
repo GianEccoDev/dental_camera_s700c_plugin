@@ -1,14 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:open_settings_plus/core/open_settings_plus.dart';
 import 'package:screen_recorder/screen_recorder.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:gallery_saver/gallery_saver.dart';
 import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_ffmpeg/flutter_ffmpeg.dart';
+import 'package:gal/gal.dart';
 
 bool _isRecording = false;
 
@@ -161,7 +162,7 @@ class _S700cViewState extends State<S700cView> {
 
   void _startTimer() {
     if (Platform.isIOS) {
-      _timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {
+      _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
         setState(() {
           _recordDuration++;
         });
@@ -187,14 +188,14 @@ class _S700cViewState extends State<S700cView> {
       final imagePath = '${directory.path}/temp_image.png';
       final file = File(imagePath);
       await file.writeAsBytes(imageData);
-      bool? result;
+      bool result = true;
       try {
-        result = await GallerySaver.saveImage(imagePath);
+        await Gal.putImage(imagePath);
       } catch (e) {
-        //print("[DEBUG] Error saving image to gallery: $e");
+        result = false;
       }
 
-      if (result ?? false) {
+      if (result) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text("Immagine salvata con successo"),
@@ -226,14 +227,14 @@ class _S700cViewState extends State<S700cView> {
       final videoPath = '${directory.path}/dental_Cam.mp4';
       final file = File(videoPath);
       await file.writeAsBytes(videoData);
-      bool? result;
+      bool result = true;
       try {
-        result = await GallerySaver.saveVideo(videoPath);
+        await Gal.putVideo(videoPath);
       } catch (e) {
-        //print("[DEBUG] Error saving video to gallery: $e");
+        result = false;
       }
 
-      if (result ?? false) {
+      if (result) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text("Video salvato con successo"),
@@ -310,7 +311,7 @@ class _S700cViewState extends State<S700cView> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Failed to start recording: $e'),
-          duration: Duration(seconds: 2),
+          duration: const Duration(seconds: 2),
         ),
       );
     }
@@ -411,7 +412,7 @@ class _S700cViewState extends State<S700cView> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Failed to stop recording: $e'),
-          duration: Duration(seconds: 2),
+          duration: const Duration(seconds: 2),
         ),
       );
     }
@@ -427,14 +428,14 @@ class _S700cViewState extends State<S700cView> {
 
       await _flutterFFmpeg.execute(command).then((rc) async {
         if (rc == 0) {
-          bool? result;
+          bool result = true;
           try {
-            result = await GallerySaver.saveVideo(videoPath);
+            await Gal.putVideo(videoPath);
           } catch (e) {
-            //print("[DEBUG] Error saving video to gallery: $e");
+            result = false;
           }
 
-          if (result ?? false) {
+          if (result) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text("Video salvato con successo"),
@@ -549,7 +550,7 @@ class _S700cViewState extends State<S700cView> {
                   padding: const EdgeInsets.only(bottom: 16.0),
                   child: Text(
                     _formatDuration(_recordDuration),
-                    style: TextStyle(color: Colors.red, fontSize: 24),
+                    style: const TextStyle(color: Colors.red, fontSize: 24),
                   ),
                 ),
               _FinalButtonRow(
@@ -600,7 +601,7 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
 
   prepareTimer() {
     final startTime = DateTime.now();
-    videoTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+    videoTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       final dur = DateTime.now().difference(startTime);
       cnt.add(dur.toString().split('.')[0]);
     });
