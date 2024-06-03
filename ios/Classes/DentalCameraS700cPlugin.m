@@ -1,5 +1,4 @@
 #import "DentalCameraS700cPlugin.h"
-#import "Runner/GeneratedPluginRegistrant.h"
 #import "CameraView.h"
 
 @interface CameraViewFactory : NSObject <FlutterPlatformViewFactory>
