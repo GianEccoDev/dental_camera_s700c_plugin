@@ -3,6 +3,7 @@
 #import "GeneratedPluginRegistrant.h"
 #import "CameraView.h"
 #import "DentalCameraS700cPlugin.h"
+#import <UIKit/UIKit.h>
 
 @interface CameraViewFactory : NSObject <FlutterPlatformViewFactory>
 @property (nonatomic, strong) CameraView *cameraView; // Retain the CameraView instance
