@@ -69,7 +69,7 @@
 		C79F2FD7A0BEC865DADC8642 /* libPods-Runner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Runner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D709D1D82C087AA400A136A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D72F8DB92C106E80003AFDD6 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		D72F8DBB2C106E80003AFDD6 /* dental_camera_s700c_plugin.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dental_camera_s700c_plugin.podspec; sourceTree = "<group>"; };
+		D72F8DBB2C106E80003AFDD6 /* dental_camera_s700c_plugin.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dental_camera_s700c_plugin.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D72F8DBC2C106E80003AFDD6 /* DentalCameraS700cPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DentalCameraS700cPlugin.h; sourceTree = "<group>"; };
 		D72F8DBD2C106E80003AFDD6 /* DentalCameraS700cPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DentalCameraS700cPlugin.m; sourceTree = "<group>"; };
 		D741A5B72C10A17E005C777D /* Generated.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
