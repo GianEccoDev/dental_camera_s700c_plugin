@@ -19,6 +19,7 @@
 		D72F8DC12C106E80003AFDD6 /* DentalCameraS700cPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = D72F8DBD2C106E80003AFDD6 /* DentalCameraS700cPlugin.m */; };
 		D751D8162BF2704F00CBBC54 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D751D8142BF2704E00CBBC54 /* ViewController.m */; };
 		D7562C532BF2D18200FAE7C4 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7562C522BF2D18200FAE7C4 /* CameraView.m */; };
+		D795465B2C10776C0072B33B /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = D795465A2C10776C0072B33B /* GeneratedPluginRegistrant.m */; };
 		D7BAC4A22BF25A9100B044AF /* BFL_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */; };
 		D7BAC4A32BF25A9100B044AF /* BFL_SDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D7E8CFF32C07958E00F9F0F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7E8CFF22C07958E00F9F0F1 /* Assets.xcassets */; };
@@ -76,6 +77,8 @@
 		D751D8152BF2704E00CBBC54 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D7562C522BF2D18200FAE7C4 /* CameraView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		D7562C542BF2D39000FAE7C4 /* CameraView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
+		D79546592C10776C0072B33B /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
+		D795465A2C10776C0072B33B /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BFL_SDK.framework; sourceTree = "<group>"; };
 		D7E8CFF22C07958E00F9F0F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7E8CFF52C07959F00F9F0F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -179,6 +182,9 @@
 				D751D8142BF2704E00CBBC54 /* ViewController.m */,
 				D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */,
 				7AFFD8ED1D35381100E5BB4D /* AppDelegate.h */,
+				D79546592C10776C0072B33B /* GeneratedPluginRegistrant.h */,
+				D795465A2C10776C0072B33B /* GeneratedPluginRegistrant.m */,
+				97C146F21CF9000F007C117D /* main.m */,
 				7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */,
 				97C147021CF9000F007C117D /* Info.plist */,
 				97C146F11CF9000F007C117D /* Supporting Files */,
@@ -191,7 +197,6 @@
 		97C146F11CF9000F007C117D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				97C146F21CF9000F007C117D /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 				97C146F31CF9000F007C117D /* main.m in Sources */,
 				D7562C532BF2D18200FAE7C4 /* CameraView.m in Sources */,
 				D751D8162BF2704F00CBBC54 /* ViewController.m in Sources */,
+				D795465B2C10776C0072B33B /* GeneratedPluginRegistrant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
