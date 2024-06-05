@@ -2,6 +2,7 @@
 #import <Flutter/Flutter.h>
 #import "CameraView.h"
 #import "ViewController.h"
+#import "GeneratedPluginRegistrant.h"
 
 @interface DentalCameraS700cPlugin () <FlutterPlatformViewFactory>
 @property (nonatomic, strong) NSObject<FlutterBinaryMessenger>* messenger;
