@@ -1,54 +1,63 @@
-#import "DentalCameraS700cPlugin.h"
 #import <Flutter/Flutter.h>
-#import "CameraView.h"
-#import "ViewController.h"
+#import "AppDelegate.h"
 #import "GeneratedPluginRegistrant.h"
+#import "CameraView.h"
+#import "DentalCameraS700cPlugin.h"
 
-@interface DentalCameraS700cPlugin () <FlutterPlatformViewFactory>
-@property (nonatomic, strong) NSObject<FlutterBinaryMessenger>* messenger;
+@interface CameraViewFactory : NSObject <FlutterPlatformViewFactory>
+@property (nonatomic, strong) CameraView *cameraView; // Retain the CameraView instance
 @end
 
-@implementation DentalCameraS700cPlugin
+@implementation CameraViewFactory
 
-+ (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-    FlutterMethodChannel* channel = [FlutterMethodChannel
-        methodChannelWithName:@"dental_camera_s700c_plugin"
-              binaryMessenger:[registrar messenger]];
-    DentalCameraS700cPlugin* instance = [[DentalCameraS700cPlugin alloc] init];
-    instance.messenger = [registrar messenger];
-    [registrar addMethodCallDelegate:instance channel:channel];
-    [registrar registerViewFactory:instance withId:@"my_uikit_view"];
-}
-
-- (NSObject<FlutterPlatformView> *)createWithFrame:(CGRect)frame
-                                   viewIdentifier:(int64_t)viewId
-                                        arguments:(id _Nullable)args {
-    return [[CameraView alloc] initWithFrame:frame
-                               viewIdentifier:viewId
-                                    arguments:args
-                              binaryMessenger:self.messenger];
-}
-
-- (NSObject<FlutterMessageCodec>*)createArgsCodec {
-    return [FlutterStandardMessageCodec sharedInstance];
-}
-
-- (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
-    CameraView *cameraView = (CameraView *)[self createWithFrame:CGRectZero viewIdentifier:0 arguments:nil];
-    
-    if ([@"startVideoRecording" isEqualToString:call.method]) {
-        [cameraView startVideoRecordingWithResult:result];
-        FlutterMethodChannel *channel = [FlutterMethodChannel methodChannelWithName:@"dental_camera_s700c_plugin" binaryMessenger:self.messenger];
-        [channel invokeMethod:@"RECORDING_STARTED" arguments:nil];
-    } else if ([@"stopVideoRecording" isEqualToString:call.method]) {
-        [cameraView stopVideoRecordingWithResult:result];
-        FlutterMethodChannel *channel = [FlutterMethodChannel methodChannelWithName:@"dental_camera_s700c_plugin" binaryMessenger:self.messenger];
-        [channel invokeMethod:@"RECORDING_STOPPED" arguments:nil];
-    } else if ([@"foto_ios" isEqualToString:call.method]) {
-        [cameraView capturePhotoWithResult:result];
-    } else {
-        result(FlutterMethodNotImplemented);
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _cameraView = [[CameraView alloc] initWithFrame:CGRectZero viewIdentifier:0 arguments:nil];
     }
+    return self;
+}
+
+- (NSObject<FlutterPlatformView> *)createWithFrame:(CGRect)frame viewIdentifier:(int64_t)viewId arguments:(id)args {
+    return self.cameraView;
+}
+
+@end
+
+@implementation AppDelegate {
+    CameraViewFactory *cameraViewFactory;
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    FlutterViewController *controller = (FlutterViewController *)self.window.rootViewController;
+
+    // Register the plugin with the engine
+    [GeneratedPluginRegistrant registerWithRegistry:controller.engine];
+
+    FlutterMethodChannel *channel = [FlutterMethodChannel methodChannelWithName:@"dental_camera_s700c_plugin" binaryMessenger:controller.binaryMessenger];
+    [channel setMethodCallHandler:^(FlutterMethodCall *call, FlutterResult result) {
+        if ([@"startVideoRecording" isEqualToString:call.method]) {
+            NSLog(@"[DEBUG] startVideoRecording method call received");
+            [cameraViewFactory.cameraView startVideoRecordingWithResult:result];
+            [channel invokeMethod:@"RECORDING_STARTED" arguments:nil];
+        } else if ([@"stopVideoRecording" isEqualToString:call.method]) {
+            NSLog(@"[DEBUG] stopVideoRecording method call received");
+            [cameraViewFactory.cameraView stopVideoRecordingWithResult:result];
+            [channel invokeMethod:@"RECORDING_STOPPED" arguments:nil];
+        } else if ([@"foto_ios" isEqualToString:call.method]) {
+            NSLog(@"[DEBUG] foto_ios method call received");
+            [cameraViewFactory.cameraView capturePhotoWithResult:result];
+        } else {
+            result(FlutterMethodNotImplemented);
+        }
+    }];
+
+    // Initialize and retain a single CameraView instance
+    cameraViewFactory = [[CameraViewFactory alloc] init];
+    NSObject<FlutterPluginRegistrar> *registrar = [controller.engine registrarForPlugin:@"CameraViewFactory"];
+    [registrar registerViewFactory:cameraViewFactory withId:@"my_uikit_view"];
+
+    return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 @end
