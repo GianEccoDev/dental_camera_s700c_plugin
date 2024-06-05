@@ -1,6 +1,8 @@
 #import "AppDelegate.h"
 #import "GeneratedPluginRegistrant.h"
 
+
+//prova
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
