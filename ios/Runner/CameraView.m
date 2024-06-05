@@ -1,13 +1,16 @@
 #import "CameraView.h"
 
-@implementation CameraView
+@implementation CameraView{
+    ViewController *_viewController;
+    UIView *_view;
+  }
 
-- (instancetype)initWithFrame:(CGRect)frame viewIdentifier:(int64_t)viewId arguments:(id)args {
+- (instancetype)initWithFrame:(CGRect)frame viewIdentifier:(int64_t)viewId arguments:(id)args binaryMessenger:(NSObject<FlutterBinaryMessenger>*)messenger {
     self = [super init];
     if (self) {
         _customViewController = [[ViewController alloc] init];
         _customViewController.view.frame = frame;
-        [self setupWriter];
+        //[self setupWriter];
     }
     return self;
 }

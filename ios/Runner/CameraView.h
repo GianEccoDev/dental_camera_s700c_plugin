@@ -15,7 +15,7 @@
 @property (nonatomic, assign) CMTime frameTime;
 @property (nonatomic, assign) BOOL isRecording;
 
-- (instancetype)initWithFrame:(CGRect)frame viewIdentifier:(int64_t)viewId arguments:(id)args;
+- (instancetype)initWithFrame:(CGRect)frame viewIdentifier:(int64_t)viewId arguments:(id)args binaryMessenger:(NSObject<FlutterBinaryMessenger>*)messenger;
 - (UIView *)view;
 - (void)capturePhotoWithResult:(FlutterResult)result;
 - (void)startVideoRecordingWithResult:(FlutterResult)result;
