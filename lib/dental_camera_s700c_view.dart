@@ -555,7 +555,7 @@ class _S700cViewState extends State<S700cView> {
                   padding: const EdgeInsets.only(bottom: 16.0),
                   child: Text(
                     _formatDuration(_recordDuration),
-                    style: const TextStyle(color: Colors.red, fontSize: 24),
+                    style: const TextStyle(color: Colors.green, fontSize: 24),
                   ),
                 ),
               _FinalButtonRow(
@@ -631,7 +631,7 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                     opacity: snapshot.data != null ? 1 : 0,
                     child: Container(
                       decoration: const BoxDecoration(
-                          color: Colors.red,
+                          color: Colors.green,
                           borderRadius: BorderRadius.all(Radius.circular(80))),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
@@ -693,7 +693,7 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                   height: 75,
                   width: 75,
                   decoration: BoxDecoration(
-                      color: Colors.red.withOpacity(0.7),
+                      color: Colors.green.withOpacity(0.7),
                       shape: BoxShape.circle),
                 ),
               ),
