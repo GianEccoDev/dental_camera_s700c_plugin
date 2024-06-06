@@ -24,6 +24,7 @@
 		D7BAC4A32BF25A9100B044AF /* BFL_SDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D7E8CFF32C07958E00F9F0F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7E8CFF22C07958E00F9F0F1 /* Assets.xcassets */; };
 		D7E8CFF62C07959F00F9F0F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E8CFF42C07959F00F9F0F1 /* LaunchScreen.storyboard */; };
+		D7F803E32C11B42800AD4EBD /* CameraViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F803E22C11B42800AD4EBD /* CameraViewFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BFL_SDK.framework; sourceTree = "<group>"; };
 		D7E8CFF22C07958E00F9F0F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7E8CFF52C07959F00F9F0F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D7F803E22C11B42800AD4EBD /* CameraViewFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewFactory.m; sourceTree = "<group>"; };
 		EFE6BF04A80D3B2139083CE9 /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
 		F1F953D994A1B17592937406 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,6 +216,7 @@
 				D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */,
 				D7562C522BF2D18200FAE7C4 /* CameraView.m */,
 				D7562C542BF2D39000FAE7C4 /* CameraView.h */,
+				D7F803E22C11B42800AD4EBD /* CameraViewFactory.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				978B8F6F1D3862AE00F588F7 /* AppDelegate.m in Sources */,
+				D7F803E32C11B42800AD4EBD /* CameraViewFactory.m in Sources */,
 				D72F8DC12C106E80003AFDD6 /* DentalCameraS700cPlugin.m in Sources */,
 				97C146F31CF9000F007C117D /* main.m in Sources */,
 				D7562C532BF2D18200FAE7C4 /* CameraView.m in Sources */,

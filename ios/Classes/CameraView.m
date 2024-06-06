@@ -1,5 +1,22 @@
 #import "CameraView.h"
 
+
+
+@interface CameraViewFactory : NSObject <FlutterPlatformViewFactory>
+- (instancetype)initWithMessenger:(NSObject<FlutterBinaryMessenger>*)messenger;
+@end
+
+@interface CameraView : NSObject <FlutterPlatformView>
+
+- (instancetype)initWithFrame:(CGRect)frame
+               viewIdentifier:(int64_t)viewId
+                    arguments:(id _Nullable)args
+              binaryMessenger:(NSObject<FlutterBinaryMessenger>*)messenger;
+
+- (UIView*)view;
+@end
+
+
 @implementation CameraView
 
 - (instancetype)initWithFrame:(CGRect)frame viewIdentifier:(int64_t)viewId arguments:(id)args {
