@@ -519,9 +519,9 @@
 				DEVELOPMENT_TEAM = 4GA4T8Y425;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Runner/**",
-					"$(PROJECT_DIR)/Runner/BFL_SDK",
+					"$(inherited)/**",
+					"$(PROJECT_DIR)/Classes/**",
+					"$(PROJECT_DIR)/Classes/BFL_SDK/**",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -694,9 +694,9 @@
 				DEVELOPMENT_TEAM = 4GA4T8Y425;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Runner/**",
-					"$(PROJECT_DIR)/Runner/BFL_SDK",
+					"$(inherited)/**",
+					"$(PROJECT_DIR)/Classes/**",
+					"$(PROJECT_DIR)/Classes/BFL_SDK/**",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -718,9 +718,9 @@
 				DEVELOPMENT_TEAM = 4GA4T8Y425;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Runner/**",
-					"$(PROJECT_DIR)/Runner/BFL_SDK",
+					"$(inherited)/**",
+					"$(PROJECT_DIR)/Classes/**",
+					"$(PROJECT_DIR)/Classes/BFL_SDK/**",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
