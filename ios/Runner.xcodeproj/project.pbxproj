@@ -74,7 +74,7 @@
 		D74E170D2C11C9C00003C492 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		D74E170F2C11C9C00003C492 /* DentalCameraS700cPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DentalCameraS700cPlugin.h; sourceTree = "<group>"; };
 		D74E17102C11C9C00003C492 /* DentalCameraS700cPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DentalCameraS700cPlugin.m; sourceTree = "<group>"; };
-		D74E17122C11C9C00003C492 /* dental_camera_s700c_plugin.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dental_camera_s700c_plugin.podspec; sourceTree = "<group>"; };
+		D74E17122C11C9C00003C492 /* dental_camera_s700c_plugin.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dental_camera_s700c_plugin.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D751D8142BF2704E00CBBC54 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D751D8152BF2704E00CBBC54 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D7562C522BF2D18200FAE7C4 /* CameraView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
