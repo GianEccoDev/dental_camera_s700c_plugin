@@ -8,15 +8,14 @@
 @end
 
 @implementation CameraViewFactory
-
-- (instancetype)init {
+- (instancetype)initWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
     self = [super init];
     if (self) {
+        _registrar = registrar; // Store the registrar
         _cameraView = [[CameraView alloc] initWithFrame:CGRectZero viewIdentifier:0 arguments:nil];
     }
     return self;
 }
-
 - (NSObject<FlutterPlatformView> *)createWithFrame:(CGRect)frame viewIdentifier:(int64_t)viewId arguments:(id)args {
     return self.cameraView;
 }
