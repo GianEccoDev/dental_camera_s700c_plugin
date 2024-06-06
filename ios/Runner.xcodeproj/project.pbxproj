@@ -178,18 +178,12 @@
 				D709D1D72C087AA400A136A4 /* Main.storyboard */,
 				D7E8CFF42C07959F00F9F0F1 /* LaunchScreen.storyboard */,
 				D7E8CFF22C07958E00F9F0F1 /* Assets.xcassets */,
-				D751D8152BF2704E00CBBC54 /* ViewController.h */,
-				D751D8142BF2704E00CBBC54 /* ViewController.m */,
 				D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */,
-				7AFFD8ED1D35381100E5BB4D /* AppDelegate.h */,
 				D79546592C10776C0072B33B /* GeneratedPluginRegistrant.h */,
 				D795465A2C10776C0072B33B /* GeneratedPluginRegistrant.m */,
 				97C146F21CF9000F007C117D /* main.m */,
-				7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */,
 				97C147021CF9000F007C117D /* Info.plist */,
 				97C146F11CF9000F007C117D /* Supporting Files */,
-				D7562C522BF2D18200FAE7C4 /* CameraView.m */,
-				D7562C542BF2D39000FAE7C4 /* CameraView.h */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -213,7 +207,13 @@
 			isa = PBXGroup;
 			children = (
 				D72F8DBC2C106E80003AFDD6 /* DentalCameraS700cPlugin.h */,
+				D751D8142BF2704E00CBBC54 /* ViewController.m */,
+				D751D8152BF2704E00CBBC54 /* ViewController.h */,
+				7AFFD8ED1D35381100E5BB4D /* AppDelegate.h */,
 				D72F8DBD2C106E80003AFDD6 /* DentalCameraS700cPlugin.m */,
+				7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */,
+				D7562C522BF2D18200FAE7C4 /* CameraView.m */,
+				D7562C542BF2D39000FAE7C4 /* CameraView.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
