@@ -20,6 +20,7 @@
 		D74E17152C11C9C00003C492 /* dental_camera_s700c_plugin.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D74E17122C11C9C00003C492 /* dental_camera_s700c_plugin.podspec */; };
 		D751D8162BF2704F00CBBC54 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D751D8142BF2704E00CBBC54 /* ViewController.m */; };
 		D7562C532BF2D18200FAE7C4 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7562C522BF2D18200FAE7C4 /* CameraView.m */; };
+		D7982CB52C11FC94003437C9 /* CameraViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D7982CB42C11FC94003437C9 /* CameraViewFactory.m */; };
 		D7BAC4A22BF25A9100B044AF /* BFL_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */; };
 		D7BAC4A32BF25A9100B044AF /* BFL_SDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D7E8CFF32C07958E00F9F0F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7E8CFF22C07958E00F9F0F1 /* Assets.xcassets */; };
@@ -79,6 +80,8 @@
 		D751D8152BF2704E00CBBC54 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D7562C522BF2D18200FAE7C4 /* CameraView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		D7562C542BF2D39000FAE7C4 /* CameraView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
+		D7982CB42C11FC94003437C9 /* CameraViewFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewFactory.m; sourceTree = "<group>"; };
+		D7982CB62C11FCB3003437C9 /* CameraViewFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewFactory.h; sourceTree = "<group>"; };
 		D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BFL_SDK.framework; sourceTree = "<group>"; };
 		D7E8CFF22C07958E00F9F0F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7E8CFF52C07959F00F9F0F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -214,6 +217,8 @@
 			children = (
 				D74E170F2C11C9C00003C492 /* DentalCameraS700cPlugin.h */,
 				D74E17102C11C9C00003C492 /* DentalCameraS700cPlugin.m */,
+				D7982CB42C11FC94003437C9 /* CameraViewFactory.m */,
+				D7982CB62C11FCB3003437C9 /* CameraViewFactory.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -413,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7982CB52C11FC94003437C9 /* CameraViewFactory.m in Sources */,
 				978B8F6F1D3862AE00F588F7 /* AppDelegate.m in Sources */,
 				D74E17142C11C9C00003C492 /* DentalCameraS700cPlugin.m in Sources */,
 				97C146F31CF9000F007C117D /* main.m in Sources */,

@@ -1,8 +1,5 @@
 #import "DentalCameraS700cPlugin.h"
-#import "AppDelegate.h"
-#import "CameraView.h"
-#import "ViewController.h"
-#import "GeneratedPluginRegistrant.h"
+#import "CameraViewFactory.h"
 
 @implementation DentalCameraS700cPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
@@ -11,7 +8,9 @@
             binaryMessenger:[registrar messenger]];
   DentalCameraS700cPlugin* instance = [[DentalCameraS700cPlugin alloc] init];
   [registrar addMethodCallDelegate:instance channel:channel];
-    
+
+  CameraViewFactory* factory = [[CameraViewFactory alloc] initWithMessenger:[registrar messenger]];
+  [registrar registerViewFactory:factory withId:@"my_uikit_view"];
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
