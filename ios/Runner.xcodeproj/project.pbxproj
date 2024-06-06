@@ -518,6 +518,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 4GA4T8Y425;
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = "arm64 arm7";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"$(PROJECT_DIR)/Classes/**",
@@ -693,6 +694,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 4GA4T8Y425;
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = "armv7 arm64";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"$(PROJECT_DIR)/Classes/**",
@@ -717,6 +719,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 4GA4T8Y425;
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = "armv7 arm64";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"$(PROJECT_DIR)/Classes/**",
