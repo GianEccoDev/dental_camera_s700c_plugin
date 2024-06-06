@@ -10,23 +10,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"[DEBUG] ViewController viewDidLoad");
-    
     self.camera = [Camera sharedCamera];
     self.camera.delegate = self;
-    
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, WIDTH, (0.75) * WIDTH)];
     self.imageView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.imageView];
-    
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(10, HEIGHT - 50, WIDTH - 20, 1)];
     [self.view addSubview:line];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSLog(@"[DEBUG] ViewController viewDidAppear");
     [self.camera start];
 }
 
