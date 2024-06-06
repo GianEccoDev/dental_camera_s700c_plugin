@@ -1,6 +1,0 @@
-module gallery_saver {
-  umbrella header "gallery_saver-umbrella.h"
-
-  export *
-  module * { export * }
-}

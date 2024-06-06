@@ -1,1 +1,0 @@
-../../../../.symlinks/plugins/gallery_saver/ios/Classes/GallerySaverPlugin.h
