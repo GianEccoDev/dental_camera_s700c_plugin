@@ -1,10 +1,8 @@
 #import "ViewController.h"
+#import "Camera.h"
 
 #define WIDTH [UIScreen mainScreen].bounds.size.width
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
-
-@interface ViewController ()
-@end
 
 @implementation ViewController
 
@@ -29,15 +27,11 @@
     [self.camera stop];
 }
 
-- (void)camera:(Camera *)server image:(UIImage *)image appendix:(NSString *)appendix {
+- (void)camera:(Camera *)camera image:(UIImage *)image appendix:(NSString *)appendix {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.imageView.image = image;
         self.capturedImage = image;
     });
-}
-
-- (UIImage *)getCurrentFrame {
-    return self.imageView.image;
 }
 
 @end
