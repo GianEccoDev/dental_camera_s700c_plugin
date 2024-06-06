@@ -2,7 +2,7 @@
 #import "AppDelegate.h"
 #import "GeneratedPluginRegistrant.h"
 #import "CameraView.h"
-
+#import "DentalCameraS700cPlugin.h"
 @interface CameraViewFactory : NSObject <FlutterPlatformViewFactory>
 @property (nonatomic, strong) CameraView *cameraView; // Retain the CameraView instance
 @end
@@ -32,6 +32,7 @@
 
     // Register the plugin with the engine
     [GeneratedPluginRegistrant registerWithRegistry:controller.engine];
+    [DentalCameraS700cPlugin registerWithRegistrar:[self registrarForPlugin:@"DentalCameraS700cPlugin"]];
 
     FlutterMethodChannel *channel = [FlutterMethodChannel methodChannelWithName:@"dental_camera_s700c_plugin" binaryMessenger:controller.binaryMessenger];
     [channel setMethodCallHandler:^(FlutterMethodCall *call, FlutterResult result) {
