@@ -32,6 +32,9 @@
   DentalCameraS700cPlugin* instance = [[DentalCameraS700cPlugin alloc] init];
   [registrar addMethodCallDelegate:instance channel:channel];
     
+  [GeneratedPluginRegistrant registerWithRegistry:self];
+
+    
   CameraViewFactory* factory = [[CameraViewFactory alloc] initWithMessenger:[registrar messenger]];
   [registrar registerViewFactory:factory withId:@"my_uikit_view"];
 }
