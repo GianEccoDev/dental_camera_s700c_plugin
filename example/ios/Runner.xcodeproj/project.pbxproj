@@ -17,6 +17,7 @@
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		D79451492C1080010065800A /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = D79451472C1080010065800A /* GeneratedPluginRegistrant.m */; };
+		D7F803E12C11B15B00AD4EBD /* BFL_SDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7F803E02C11B15B00AD4EBD /* BFL_SDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D7F803E12C11B15B00AD4EBD /* BFL_SDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,6 +69,7 @@
 		D79451462C107DDA0065800A /* Generated.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = ../../../../../Desktop/PLUGIN_ANDRO_E_CODICE_IOS/PLUGIN_COMPLETO/dental_camera_s700c_plugin/ios/Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		D79451472C1080010065800A /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		D79451482C1080010065800A /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
+		D7F803E02C11B15B00AD4EBD /* BFL_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BFL_SDK.framework; path = ../../ios/Classes/BFL_SDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,7 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
+				D7F803E02C11B15B00AD4EBD /* BFL_SDK.framework */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				331C80F2294D02FB00263BE5 /* RunnerTests */,
