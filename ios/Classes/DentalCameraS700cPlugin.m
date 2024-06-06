@@ -1,6 +1,5 @@
 #import "DentalCameraS700cPlugin.h"
 
-
 @implementation DentalCameraS700cPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   FlutterMethodChannel* channel = [FlutterMethodChannel
