@@ -4,58 +4,65 @@
 #import "CameraView.h"
 
 @interface CameraViewFactory : NSObject <FlutterPlatformViewFactory>
-@property (nonatomic, strong) CameraView *cameraView; // Retain the CameraView instance
 @end
 
 @implementation CameraViewFactory
-- (instancetype)initWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
-    self = [super init];
-    if (self) {
-        _registrar = registrar; // Store the registrar
-        _cameraView = [[CameraView alloc] initWithFrame:CGRectZero viewIdentifier:0 arguments:nil];
-    }
-    return self;
-}
-- (NSObject<FlutterPlatformView> *)createWithFrame:(CGRect)frame viewIdentifier:(int64_t)viewId arguments:(id)args {
-    return self.cameraView;
+
+- (NSObject<FlutterPlatformView> *)createWithFrame:(CGRect)frame
+                                     viewIdentifier:(int64_t)viewId
+                                          arguments:(id _Nullable)args {
+    return [[CameraView alloc] initWithFrame:frame viewIdentifier:viewId arguments:args];
 }
 
 @end
 
-@implementation AppDelegate {
-    CameraViewFactory *cameraViewFactory;
-}
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     FlutterViewController *controller = (FlutterViewController *)self.window.rootViewController;
-
-    // Register the plugin with the engine
-    [GeneratedPluginRegistrant registerWithRegistry:controller.engine];
-
+    
+    // Register CameraViewFactory
+    NSObject<FlutterPluginRegistrar> *registrar = [controller.engine registrarForPlugin:@"CameraViewFactory"];
+    CameraViewFactory *cameraViewFactory = [[CameraViewFactory alloc] init];
+    [registrar registerViewFactory:cameraViewFactory withId:@"my_uikit_view"];
+    
+    // Register method channel
     FlutterMethodChannel *channel = [FlutterMethodChannel methodChannelWithName:@"dental_camera_s700c_plugin" binaryMessenger:controller.binaryMessenger];
+    
+    __weak typeof(self) weakSelf = self;
     [channel setMethodCallHandler:^(FlutterMethodCall *call, FlutterResult result) {
+        __strong typeof(self) strongSelf = weakSelf;
         if ([@"startVideoRecording" isEqualToString:call.method]) {
             NSLog(@"[DEBUG] startVideoRecording method call received");
-            [cameraViewFactory.cameraView startVideoRecordingWithResult:result];
+            [strongSelf.cameraView startVideoRecordingWithResult:result];
             [channel invokeMethod:@"RECORDING_STARTED" arguments:nil];
         } else if ([@"stopVideoRecording" isEqualToString:call.method]) {
             NSLog(@"[DEBUG] stopVideoRecording method call received");
-            [cameraViewFactory.cameraView stopVideoRecordingWithResult:result];
+            [strongSelf.cameraView stopVideoRecordingWithResult:result];
             [channel invokeMethod:@"RECORDING_STOPPED" arguments:nil];
         } else if ([@"foto_ios" isEqualToString:call.method]) {
             NSLog(@"[DEBUG] foto_ios method call received");
-            [cameraViewFactory.cameraView capturePhotoWithResult:result];
+            [strongSelf.cameraView capturePhotoWithResult:result];
         } else {
             result(FlutterMethodNotImplemented);
         }
     }];
-
-    // Initialize and retain a single CameraView instance
-    cameraViewFactory = [[CameraViewFactory alloc] init];
-    NSObject<FlutterPluginRegistrar> *registrar = [controller.engine registrarForPlugin:@"CameraViewFactory"];
-    [registrar registerViewFactory:cameraViewFactory withId:@"my_uikit_view"];
-
+    
+    [GeneratedPluginRegistrant registerWithRegistry:controller.engine];
     return [super application:application didFinishLaunchingWithOptions:launchOptions];
+}
+
+// Access the CameraView instance
+- (CameraView *)cameraView {
+    UIViewController *flutterVC = self.window.rootViewController;
+    if ([flutterVC isKindOfClass:[FlutterViewController class]]) {
+        for (UIView *subview in flutterVC.view.subviews) {
+            if ([subview isKindOfClass:[CameraView class]]) {
+                return (CameraView *)subview;
+            }
+        }
+    }
+    return nil;
 }
 
 @end
