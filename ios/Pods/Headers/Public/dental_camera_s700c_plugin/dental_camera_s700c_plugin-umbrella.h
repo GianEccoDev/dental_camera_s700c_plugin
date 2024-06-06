@@ -1,0 +1,1 @@
+../../../Target Support Files/dental_camera_s700c_plugin/dental_camera_s700c_plugin-umbrella.h
