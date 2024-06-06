@@ -1,3 +1,5 @@
+// AppDelegate.m
+
 #import <Flutter/Flutter.h>
 #import "AppDelegate.h"
 #import "GeneratedPluginRegistrant.h"
@@ -29,20 +31,22 @@
     // Register method channel
     FlutterMethodChannel *channel = [FlutterMethodChannel methodChannelWithName:@"dental_camera_s700c_plugin" binaryMessenger:controller.binaryMessenger];
     
+    // Use weak reference to self in the block to avoid retain cycles.
     __weak typeof(self) weakSelf = self;
     [channel setMethodCallHandler:^(FlutterMethodCall *call, FlutterResult result) {
-        __strong typeof(self) strongSelf = weakSelf;
+        __strong typeof(self) strongSelf = weakSelf; // Strong reference inside the block
         if ([@"startVideoRecording" isEqualToString:call.method]) {
             NSLog(@"[DEBUG] startVideoRecording method call received");
-            [strongSelf.cameraView startVideoRecordingWithResult:result];
+            // Access cameraView directly without strong reference
+            [[strongSelf cameraView] startVideoRecordingWithResult:result];
             [channel invokeMethod:@"RECORDING_STARTED" arguments:nil];
         } else if ([@"stopVideoRecording" isEqualToString:call.method]) {
             NSLog(@"[DEBUG] stopVideoRecording method call received");
-            [strongSelf.cameraView stopVideoRecordingWithResult:result];
+            [[strongSelf cameraView] stopVideoRecordingWithResult:result];
             [channel invokeMethod:@"RECORDING_STOPPED" arguments:nil];
         } else if ([@"foto_ios" isEqualToString:call.method]) {
             NSLog(@"[DEBUG] foto_ios method call received");
-            [strongSelf.cameraView capturePhotoWithResult:result];
+            [[strongSelf cameraView] capturePhotoWithResult:result];
         } else {
             result(FlutterMethodNotImplemented);
         }
@@ -52,7 +56,7 @@
     return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
-// Access the CameraView instance
+// Access the CameraView instance without creating a strong reference
 - (CameraView *)cameraView {
     UIViewController *flutterVC = self.window.rootViewController;
     if ([flutterVC isKindOfClass:[FlutterViewController class]]) {
