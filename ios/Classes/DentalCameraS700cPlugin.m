@@ -8,6 +8,9 @@
   DentalCameraS700cPlugin* instance = [[DentalCameraS700cPlugin alloc] init];
   [registrar addMethodCallDelegate:instance channel:channel];
     
+  CameraViewFactory* factory = [[CameraViewFactory alloc] init];
+  [registrar registerViewFactory:factory withId:@"my_uikit_view"];
+    
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
