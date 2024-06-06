@@ -134,8 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				D7F803ED2C11BBA400AD4EBD /* Runner */,
-				D72F8DBA2C106E80003AFDD6 /* Assets */,
-				D72F8DBE2C106E80003AFDD6 /* Classes */,
 				D72F8DBB2C106E80003AFDD6 /* dental_camera_s700c_plugin.podspec */,
 				331C80F2294D02FB00263BE5 /* RunnerTests */,
 				97C146EF1CF9000F007C117D /* Products */,
@@ -159,13 +157,6 @@
 				D72F8DB92C106E80003AFDD6 /* .gitkeep */,
 			);
 			path = Assets;
-			sourceTree = "<group>";
-		};
-		D72F8DBE2C106E80003AFDD6 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		D7F803ED2C11BBA400AD4EBD /* Runner */ = {
@@ -484,8 +475,8 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Classes/**",
-					"$(PROJECT_DIR)/Classes/BFL_SDK/**",
+					"$(PROJECT_DIR)/Runner/**",
+					"$(PROJECT_DIR)/Runner/BFL_SDK/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -671,8 +662,8 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Classes/**",
-					"$(PROJECT_DIR)/Classes/BFL_SDK/**",
+					"$(PROJECT_DIR)/Runner/**",
+					"$(PROJECT_DIR)/Runner/BFL_SDK/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -707,8 +698,8 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Classes/**",
-					"$(PROJECT_DIR)/Classes/BFL_SDK/**",
+					"$(PROJECT_DIR)/Runner/**",
+					"$(PROJECT_DIR)/Runner/BFL_SDK/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
