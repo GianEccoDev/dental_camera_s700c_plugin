@@ -1,20 +1,39 @@
+#import <Flutter/Flutter.h>
 #import "AppDelegate.h"
 #import "GeneratedPluginRegistrant.h"
+#import "CameraView.h"
 
-@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    [GeneratedPluginRegistrant registerWithRegistry:self];
-    
+    FlutterViewController *controller = (FlutterViewController *)self.window.rootViewController;
+
+    // Register the plugin with the engine
+    [GeneratedPluginRegistrant registerWithRegistry:controller.engine];
+
+    FlutterMethodChannel *channel = [FlutterMethodChannel methodChannelWithName:@"dental_camera_s700c_plugin" binaryMessenger:controller.binaryMessenger];
+    [channel setMethodCallHandler:^(FlutterMethodCall *call, FlutterResult result) {
+        if ([@"startVideoRecording" isEqualToString:call.method]) {
+            NSLog(@"[DEBUG] startVideoRecording method call received");
+            [cameraViewFactory.cameraView startVideoRecordingWithResult:result];
+            [channel invokeMethod:@"RECORDING_STARTED" arguments:nil];
+        } else if ([@"stopVideoRecording" isEqualToString:call.method]) {
+            NSLog(@"[DEBUG] stopVideoRecording method call received");
+            [cameraViewFactory.cameraView stopVideoRecordingWithResult:result];
+            [channel invokeMethod:@"RECORDING_STOPPED" arguments:nil];
+        } else if ([@"foto_ios" isEqualToString:call.method]) {
+            NSLog(@"[DEBUG] foto_ios method call received");
+            [cameraViewFactory.cameraView capturePhotoWithResult:result];
+        } else {
+            result(FlutterMethodNotImplemented);
+        }
+    }];
+
     // Initialize and retain a single CameraView instance
     cameraViewFactory = [[CameraViewFactory alloc] init];
     NSObject<FlutterPluginRegistrar> *registrar = [controller.engine registrarForPlugin:@"CameraViewFactory"];
     [registrar registerViewFactory:cameraViewFactory withId:@"my_uikit_view"];
-    
+
     return [super application:application didFinishLaunchingWithOptions:launchOptions];
-    
-    
 }
 
 @end

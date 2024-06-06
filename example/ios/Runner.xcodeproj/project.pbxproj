@@ -18,11 +18,6 @@
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		D79451492C1080010065800A /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = D79451472C1080010065800A /* GeneratedPluginRegistrant.m */; };
 		D7F803FB2C11BFFB00AD4EBD /* BFL_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F803FA2C11BFFB00AD4EBD /* BFL_SDK.framework */; };
-		D7F803FD2C11C04D00AD4EBD /* BFL_SDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7F803FC2C11C04D00AD4EBD /* BFL_SDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D7F804022C11C07B00AD4EBD /* DentalCameraS700cPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F803FE2C11C07B00AD4EBD /* DentalCameraS700cPlugin.m */; };
-		D7F804032C11C07B00AD4EBD /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F803FF2C11C07B00AD4EBD /* CameraView.m */; };
-		D7F804042C11C07B00AD4EBD /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F804002C11C07B00AD4EBD /* GeneratedPluginRegistrant.m */; };
-		D7F804052C11C07B00AD4EBD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F804012C11C07B00AD4EBD /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +37,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D7F803FD2C11C04D00AD4EBD /* BFL_SDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,11 +69,6 @@
 		D79451472C1080010065800A /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		D79451482C1080010065800A /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		D7F803FA2C11BFFB00AD4EBD /* BFL_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BFL_SDK.framework; path = ../../ios/Runner/BFL_SDK.framework; sourceTree = "<group>"; };
-		D7F803FC2C11C04D00AD4EBD /* BFL_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BFL_SDK.framework; path = ../../ios/Runner/BFL_SDK.framework; sourceTree = "<group>"; };
-		D7F803FE2C11C07B00AD4EBD /* DentalCameraS700cPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DentalCameraS700cPlugin.m; path = ../../ios/Runner/DentalCameraS700cPlugin.m; sourceTree = "<group>"; };
-		D7F803FF2C11C07B00AD4EBD /* CameraView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CameraView.m; path = ../../ios/Runner/CameraView.m; sourceTree = "<group>"; };
-		D7F804002C11C07B00AD4EBD /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GeneratedPluginRegistrant.m; path = ../../ios/Runner/GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
-		D7F804012C11C07B00AD4EBD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../../ios/Runner/ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,11 +124,6 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
-				D7F803FF2C11C07B00AD4EBD /* CameraView.m */,
-				D7F803FE2C11C07B00AD4EBD /* DentalCameraS700cPlugin.m */,
-				D7F804002C11C07B00AD4EBD /* GeneratedPluginRegistrant.m */,
-				D7F804012C11C07B00AD4EBD /* ViewController.m */,
-				D7F803FC2C11C04D00AD4EBD /* BFL_SDK.framework */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				331C80F2294D02FB00263BE5 /* RunnerTests */,
@@ -406,10 +390,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7F804022C11C07B00AD4EBD /* DentalCameraS700cPlugin.m in Sources */,
-				D7F804032C11C07B00AD4EBD /* CameraView.m in Sources */,
-				D7F804042C11C07B00AD4EBD /* GeneratedPluginRegistrant.m in Sources */,
-				D7F804052C11C07B00AD4EBD /* ViewController.m in Sources */,
 				978B8F6F1D3862AE00F588F7 /* AppDelegate.m in Sources */,
 				97C146F31CF9000F007C117D /* main.m in Sources */,
 				D79451492C1080010065800A /* GeneratedPluginRegistrant.m in Sources */,
