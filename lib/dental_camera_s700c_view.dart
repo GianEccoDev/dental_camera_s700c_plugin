@@ -495,16 +495,16 @@ class _S700cViewState extends State<S700cView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          systemNavigationBarColor: Colors.black,
+          systemNavigationBarColor: Colors.white,
           systemNavigationBarIconBrightness:
               Platform.isAndroid ? Brightness.light : Brightness.dark,
           statusBarIconBrightness:
@@ -731,7 +731,7 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                                         fontWeight: FontWeight.w600,
                                         color: _mode == _CameraMode.photo
                                             ? Colors.teal
-                                            : Colors.black),
+                                            : Colors.white),
                                   )
                                 ],
                               ),
@@ -760,7 +760,7 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                                       fontWeight: FontWeight.w600,
                                       color: _mode == _CameraMode.video
                                           ? Colors.teal
-                                          : Colors.black),
+                                          : Colors.white),
                                 )
                               ],
                             ),
