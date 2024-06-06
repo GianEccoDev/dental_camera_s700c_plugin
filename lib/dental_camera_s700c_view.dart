@@ -495,16 +495,16 @@ class _S700cViewState extends State<S700cView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          systemNavigationBarColor: Colors.white,
+          systemNavigationBarColor: Colors.black,
           systemNavigationBarIconBrightness:
               Platform.isAndroid ? Brightness.light : Brightness.dark,
           statusBarIconBrightness:
@@ -534,7 +534,7 @@ class _S700cViewState extends State<S700cView> {
                     child: FittedBox(
                       fit: BoxFit.fitWidth,
                       child: ScreenRecorder(
-                        background: Colors.white,
+                        background: Colors.black,
                         height: 480,
                         width: 640,
                         controller: _screenRecorderController,
@@ -731,7 +731,7 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                                         fontWeight: FontWeight.w600,
                                         color: _mode == _CameraMode.photo
                                             ? Colors.teal
-                                            : Colors.white),
+                                            : Colors.black),
                                   )
                                 ],
                               ),
@@ -760,7 +760,7 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                                       fontWeight: FontWeight.w600,
                                       color: _mode == _CameraMode.video
                                           ? Colors.teal
-                                          : Colors.white),
+                                          : Colors.black),
                                 )
                               ],
                             ),

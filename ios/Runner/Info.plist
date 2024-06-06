@@ -2,17 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>io.flutter.embedded_views_preview</key>
-	<string>YES</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>My app save photo</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Questa app richiede l&apos;accesso alla fotocamera per registrare video e scattare foto.</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Questa app richiede l&apos;accesso al microfono per registrare l&apos;audio durante la registrazione video</string>
 	<key>CFBundleDevelopmentRegion</key>
