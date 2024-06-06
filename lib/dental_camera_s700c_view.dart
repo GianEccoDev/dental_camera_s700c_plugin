@@ -534,7 +534,7 @@ class _S700cViewState extends State<S700cView> {
                     child: FittedBox(
                       fit: BoxFit.fitWidth,
                       child: ScreenRecorder(
-                        background: Colors.black,
+                        background: Colors.white,
                         height: 480,
                         width: 640,
                         controller: _screenRecorderController,
