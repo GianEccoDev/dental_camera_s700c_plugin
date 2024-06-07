@@ -503,6 +503,7 @@
 					"$(PROJECT_DIR)/Classes/**",
 					"$(PROJECT_DIR)/Classes/BFL_SDK/**",
 				);
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -678,6 +679,7 @@
 					"$(PROJECT_DIR)/Classes/**",
 					"$(PROJECT_DIR)/Classes/BFL_SDK/**",
 				);
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -702,6 +704,7 @@
 					"$(PROJECT_DIR)/Classes/**",
 					"$(PROJECT_DIR)/Classes/BFL_SDK/**",
 				);
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
