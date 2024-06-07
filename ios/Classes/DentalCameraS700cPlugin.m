@@ -1,4 +1,7 @@
 #import "DentalCameraS700cPlugin.h"
+#import "AppDelegate.h"
+#import "ViewController.h"
+#import "CameraView.h"
 
 @implementation DentalCameraS700cPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
