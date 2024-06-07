@@ -178,7 +178,6 @@
 				D709D1D72C087AA400A136A4 /* Main.storyboard */,
 				D7E8CFF42C07959F00F9F0F1 /* LaunchScreen.storyboard */,
 				D7E8CFF22C07958E00F9F0F1 /* Assets.xcassets */,
-				97C147021CF9000F007C117D /* Info.plist */,
 				97C146F11CF9000F007C117D /* Supporting Files */,
 			);
 			path = Runner;
@@ -211,6 +210,7 @@
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */,
 				1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */,
+				97C147021CF9000F007C117D /* Info.plist */,
 				D7562C522BF2D18200FAE7C4 /* CameraView.m */,
 				D7562C542BF2D39000FAE7C4 /* CameraView.h */,
 				D74E17102C11C9C00003C492 /* DentalCameraS700cPlugin.m */,
