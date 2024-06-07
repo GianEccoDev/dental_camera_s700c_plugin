@@ -34,6 +34,8 @@
     [GeneratedPluginRegistrant registerWithRegistry:controller.engine];
 
     FlutterMethodChannel *channel = [FlutterMethodChannel methodChannelWithName:@"dental_camera_s700c_plugin" binaryMessenger:controller.binaryMessenger];
+    
+    
     [channel setMethodCallHandler:^(FlutterMethodCall *call, FlutterResult result) {
         if ([@"startVideoRecording" isEqualToString:call.method]) {
             NSLog(@"[DEBUG] startVideoRecording method call received");
