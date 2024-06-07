@@ -16,14 +16,8 @@ A new Flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.platform = :ios, '12.0'
+  s.platform = :ios, '10.0'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
-  # Include the BFL_SDK
-  s.vendored_frameworks = 'BFL_SDK/*.framework'
-  s.vendored_libraries = 'BFL_SDK/*.a'
-  s.header_dir = 'BFL_SDK'
-  s.header_mappings_dir = 'BFL_SDK'
-  
 end
