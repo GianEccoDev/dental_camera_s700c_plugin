@@ -3,7 +3,6 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "GeneratedPluginRegistrant.h"
-#import "Flutter"
 
 @implementation DentalCameraS700cPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
