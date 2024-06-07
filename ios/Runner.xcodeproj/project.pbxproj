@@ -13,6 +13,7 @@
 		978B8F6F1D3862AE00F588F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */; };
 		97C146F31CF9000F007C117D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C146F21CF9000F007C117D /* main.m */; };
 		AF6E97EE93413FCA66848E71 /* libPods-Runner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79F2FD7A0BEC865DADC8642 /* libPods-Runner.a */; };
+		D70E96422C12FAFE007FDA61 /* Info-dentalcameraplugin.plist in Resources */ = {isa = PBXBuildFile; fileRef = D70E96412C12FAFE007FDA61 /* Info-dentalcameraplugin.plist */; };
 		D74E17142C11C9C00003C492 /* DentalCameraS700cPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = D74E17102C11C9C00003C492 /* DentalCameraS700cPlugin.m */; };
 		D751D8162BF2704F00CBBC54 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D751D8142BF2704E00CBBC54 /* ViewController.m */; };
 		D7562C532BF2D18200FAE7C4 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7562C522BF2D18200FAE7C4 /* CameraView.m */; };
@@ -64,6 +65,7 @@
 		A6C342C05120466D356A7EB3 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		C79F2FD7A0BEC865DADC8642 /* libPods-Runner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Runner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D709D1D82C087AA400A136A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D70E96412C12FAFE007FDA61 /* Info-dentalcameraplugin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-dentalcameraplugin.plist"; sourceTree = "<group>"; };
 		D74E170D2C11C9C00003C492 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		D74E170F2C11C9C00003C492 /* DentalCameraS700cPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DentalCameraS700cPlugin.h; sourceTree = "<group>"; };
 		D74E17102C11C9C00003C492 /* DentalCameraS700cPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DentalCameraS700cPlugin.m; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				D70E96412C12FAFE007FDA61 /* Info-dentalcameraplugin.plist */,
 				D709D1D72C087AA400A136A4 /* Main.storyboard */,
 				D7E8CFF42C07959F00F9F0F1 /* LaunchScreen.storyboard */,
 				D7E8CFF22C07958E00F9F0F1 /* Assets.xcassets */,
@@ -303,6 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D70E96422C12FAFE007FDA61 /* Info-dentalcameraplugin.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,7 +507,7 @@
 					"$(PROJECT_DIR)/Classes/**",
 					"$(PROJECT_DIR)/Classes/BFL_SDK/**",
 				);
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -679,8 +683,9 @@
 					"$(PROJECT_DIR)/Classes/**",
 					"$(PROJECT_DIR)/Classes/BFL_SDK/**",
 				);
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "";
+				"INFOPLIST_FILE[sdk=*]" = "Info-dentalcameraplugin.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -704,7 +709,7 @@
 					"$(PROJECT_DIR)/Classes/**",
 					"$(PROJECT_DIR)/Classes/BFL_SDK/**",
 				);
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
