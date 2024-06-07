@@ -13,15 +13,11 @@
 		978B8F6F1D3862AE00F588F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */; };
 		97C146F31CF9000F007C117D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C146F21CF9000F007C117D /* main.m */; };
 		AF6E97EE93413FCA66848E71 /* libPods-Runner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79F2FD7A0BEC865DADC8642 /* libPods-Runner.a */; };
-		D709D1D92C087AA400A136A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D709D1D72C087AA400A136A4 /* Main.storyboard */; };
-		D74E17132C11C9C00003C492 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = D74E170D2C11C9C00003C492 /* .gitkeep */; };
 		D74E17142C11C9C00003C492 /* DentalCameraS700cPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = D74E17102C11C9C00003C492 /* DentalCameraS700cPlugin.m */; };
 		D751D8162BF2704F00CBBC54 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D751D8142BF2704E00CBBC54 /* ViewController.m */; };
 		D7562C532BF2D18200FAE7C4 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7562C522BF2D18200FAE7C4 /* CameraView.m */; };
 		D7BAC4A22BF25A9100B044AF /* BFL_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */; };
 		D7BAC4A32BF25A9100B044AF /* BFL_SDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D7E8CFF32C07958E00F9F0F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7E8CFF22C07958E00F9F0F1 /* Assets.xcassets */; };
-		D7E8CFF62C07959F00F9F0F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E8CFF42C07959F00F9F0F1 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -307,10 +303,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7E8CFF62C07959F00F9F0F1 /* LaunchScreen.storyboard in Resources */,
-				D7E8CFF32C07958E00F9F0F1 /* Assets.xcassets in Resources */,
-				D74E17132C11C9C00003C492 /* .gitkeep in Resources */,
-				D709D1D92C087AA400A136A4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,7 +503,7 @@
 					"$(PROJECT_DIR)/Runner/**",
 					"$(PROJECT_DIR)/Runner/BFL_SDK",
 				);
-				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -686,7 +678,7 @@
 					"$(PROJECT_DIR)/Runner/**",
 					"$(PROJECT_DIR)/Runner/BFL_SDK",
 				);
-				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -710,7 +702,7 @@
 					"$(PROJECT_DIR)/Runner/**",
 					"$(PROJECT_DIR)/Runner/BFL_SDK",
 				);
-				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
