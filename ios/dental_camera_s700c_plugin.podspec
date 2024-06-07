@@ -20,4 +20,10 @@ A new Flutter plugin project.
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
+  # Include the BFL_SDK
+  s.vendored_frameworks = 'BFL_SDK/*.framework'
+  s.vendored_libraries = 'BFL_SDK/*.a'
+  s.header_dir = 'BFL_SDK'
+  s.header_mappings_dir = 'BFL_SDK'
+  
 end
