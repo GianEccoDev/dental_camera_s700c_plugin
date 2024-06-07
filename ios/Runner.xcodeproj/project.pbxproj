@@ -12,6 +12,7 @@
 		6275A5B9CC47BC45843E77B6 /* libPods-RunnerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02EC11A158E94D4BF6319811 /* libPods-RunnerTests.a */; };
 		978B8F6F1D3862AE00F588F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */; };
 		AF6E97EE93413FCA66848E71 /* libPods-Runner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C79F2FD7A0BEC865DADC8642 /* libPods-Runner.a */; };
+		D70E96462C1318DC007FDA61 /* dental_camera_s700c_plugin.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D74E17122C11C9C00003C492 /* dental_camera_s700c_plugin.podspec */; };
 		D74E17142C11C9C00003C492 /* DentalCameraS700cPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = D74E17102C11C9C00003C492 /* DentalCameraS700cPlugin.m */; };
 		D751D8162BF2704F00CBBC54 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D751D8142BF2704E00CBBC54 /* ViewController.m */; };
 		D7562C532BF2D18200FAE7C4 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7562C522BF2D18200FAE7C4 /* CameraView.m */; };
@@ -278,6 +279,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D70E96462C1318DC007FDA61 /* dental_camera_s700c_plugin.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
