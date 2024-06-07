@@ -30,6 +30,18 @@ flutter_ios_podfile_setup
 target 'Runner' do
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 
+  pre_install do |installer|
+    installer.pod_targets.each do |pod|
+      if pod.name == 'dental_camera_s700c_plugin'
+        def pod.build_settings
+          super.tap do |settings|
+            settings['INFO_PLIST_FILE'] = nil
+          end
+        end
+      end
+    end
+  end
+
   target 'RunnerTests' do
     inherit! :search_paths
   end
