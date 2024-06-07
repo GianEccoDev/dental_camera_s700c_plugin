@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2A9A38F5E0154648E08A7964 /* libPods-Runner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C88CC574397DE9477CFF6613 /* libPods-Runner.a */; };
 		6ED5279BDBF0706821BCE020 /* libPods-RunnerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E86B349CB5282B567A513AC4 /* libPods-RunnerTests.a */; };
-		D70E964A2C136982007FDA61 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D70E96492C136982007FDA61 /* Info.plist */; };
 		D74E17132C11C9C00003C492 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = D74E170D2C11C9C00003C492 /* .gitkeep */; };
 		D74E17142C11C9C00003C492 /* DentalCameraS700cPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = D74E17102C11C9C00003C492 /* DentalCameraS700cPlugin.m */; };
 		D74E17152C11C9C00003C492 /* dental_camera_s700c_plugin.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D74E17122C11C9C00003C492 /* dental_camera_s700c_plugin.podspec */; };
@@ -50,7 +49,6 @@
 		C88CC574397DE9477CFF6613 /* libPods-Runner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Runner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DAE63AD6B9648DB31638B6 /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
 		D5F37744E457080E968DD0DB /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D70E96492C136982007FDA61 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Classes/Info.plist; sourceTree = SOURCE_ROOT; };
 		D70E964C2C136AB9007FDA61 /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70E964D2C136AB9007FDA61 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70E964E2C136BD8007FDA61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 		97C146F11CF9000F007C117D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D70E96492C136982007FDA61 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			path = Runner;
@@ -263,7 +260,6 @@
 			files = (
 				D74E17152C11C9C00003C492 /* dental_camera_s700c_plugin.podspec in Resources */,
 				D74E17132C11C9C00003C492 /* .gitkeep in Resources */,
-				D70E964A2C136982007FDA61 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
