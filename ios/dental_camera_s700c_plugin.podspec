@@ -22,10 +22,5 @@ A new Flutter plugin project.
   s.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386',
-    'INFOPLIST_FILE' => '$(PODS_TARGET_SRCROOT)/Classes/Info.plist'
   }
-
-  s.prepare_command = <<-CMD
-    echo '{}' > Classes/Info.plist
-  CMD
 end
