@@ -16,7 +16,6 @@
 		D709D1D92C087AA400A136A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D709D1D72C087AA400A136A4 /* Main.storyboard */; };
 		D74E17132C11C9C00003C492 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = D74E170D2C11C9C00003C492 /* .gitkeep */; };
 		D74E17142C11C9C00003C492 /* DentalCameraS700cPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = D74E17102C11C9C00003C492 /* DentalCameraS700cPlugin.m */; };
-		D74E17152C11C9C00003C492 /* dental_camera_s700c_plugin.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D74E17122C11C9C00003C492 /* dental_camera_s700c_plugin.podspec */; };
 		D751D8162BF2704F00CBBC54 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D751D8142BF2704E00CBBC54 /* ViewController.m */; };
 		D7562C532BF2D18200FAE7C4 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7562C522BF2D18200FAE7C4 /* CameraView.m */; };
 		D7BAC4A22BF25A9100B044AF /* BFL_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7BAC4A02BF2561300B044AF /* BFL_SDK.framework */; };
@@ -308,7 +307,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D74E17152C11C9C00003C492 /* dental_camera_s700c_plugin.podspec in Resources */,
 				D7E8CFF62C07959F00F9F0F1 /* LaunchScreen.storyboard in Resources */,
 				D7E8CFF32C07958E00F9F0F1 /* Assets.xcassets in Resources */,
 				D74E17132C11C9C00003C492 /* .gitkeep in Resources */,
