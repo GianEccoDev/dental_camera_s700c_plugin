@@ -528,10 +528,6 @@ class _S700cViewState extends State<S700cView> {
             else ...[
               Expanded(
                 child: Center(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: FittedBox(
-                      fit: BoxFit.fitWidth,
                       child: ScreenRecorder(
                         background: Colors.black,
                         height: 480,
@@ -545,8 +541,6 @@ class _S700cViewState extends State<S700cView> {
                                 viewType: 'mjpeg-view-type',
                               ),
                       ),
-                    ),
-                  ),
                 ),
               ),
               if (_isRecording && Platform.isIOS)
