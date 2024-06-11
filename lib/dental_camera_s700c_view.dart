@@ -10,7 +10,6 @@ import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_ffmpeg/flutter_ffmpeg.dart';
 import 'package:gal/gal.dart';
-import 'package:flutter/foundation.dart';
 
 
 bool _isRecording = false;
