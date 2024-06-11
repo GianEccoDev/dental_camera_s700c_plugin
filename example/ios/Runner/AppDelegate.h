@@ -1,7 +1,6 @@
 #import <Flutter/Flutter.h>
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : FlutterAppDelegate//UIResponder <UIApplicationDelegate>
+@interface AppDelegate : FlutterAppDelegate
 
-@property (strong, nonatomic) UIWindow *window;
 @end
