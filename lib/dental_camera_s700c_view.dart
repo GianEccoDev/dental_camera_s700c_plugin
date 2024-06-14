@@ -11,7 +11,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_ffmpeg/flutter_ffmpeg.dart';
 import 'package:gal/gal.dart';
 
-
 bool _isRecording = false;
 
 class S700cView extends StatefulWidget {
@@ -425,7 +424,7 @@ class _S700cViewState extends State<S700cView> {
       final videoPath = '${directory.path}/recorded_video.mp4';
 
       final command =
-          '-r 24 -i $framePathTemplate -vf "fps=24,format=yuv420p" -y $videoPath';
+          '-r 24 -i $framePathTemplate -vf "fps=8,format=yuv420p" -y $videoPath';
 
       await _flutterFFmpeg.execute(command).then((rc) async {
         if (rc == 0) {
@@ -528,19 +527,19 @@ class _S700cViewState extends State<S700cView> {
             else ...[
               Expanded(
                 child: Center(
-                      child: ScreenRecorder(
-                        background: Colors.black,
-                        height: 480,
-                        width: 640,
-                        controller: _screenRecorderController,
-                        child: Platform.isIOS
-                            ? const UiKitView(
-                                viewType: 'my_uikit_view',
-                              )
-                            : const AndroidView(
-                                viewType: 'mjpeg-view-type',
-                              ),
-                      ),
+                  child: ScreenRecorder(
+                    background: Colors.black,
+                    height: 480,
+                    width: 640,
+                    controller: _screenRecorderController,
+                    child: Platform.isIOS
+                        ? const UiKitView(
+                            viewType: 'my_uikit_view',
+                          )
+                        : const AndroidView(
+                            viewType: 'mjpeg-view-type',
+                          ),
+                  ),
                 ),
               ),
               if (_isRecording && Platform.isIOS)
@@ -548,7 +547,7 @@ class _S700cViewState extends State<S700cView> {
                   padding: const EdgeInsets.only(bottom: 16.0),
                   child: Text(
                     _formatDuration(_recordDuration),
-                    style: const TextStyle(color: Colors.green, fontSize: 24),
+                    style: const TextStyle(color: Colors.red, fontSize: 24),
                   ),
                 ),
               _FinalButtonRow(
@@ -624,7 +623,7 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                     opacity: snapshot.data != null ? 1 : 0,
                     child: Container(
                       decoration: const BoxDecoration(
-                          color: Colors.green,
+                          color: Colors.red,
                           borderRadius: BorderRadius.all(Radius.circular(80))),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
@@ -686,7 +685,7 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                   height: 75,
                   width: 75,
                   decoration: BoxDecoration(
-                      color: Colors.green.withOpacity(0.7),
+                      color: Colors.red.withOpacity(0.7),
                       shape: BoxShape.circle),
                 ),
               ),
