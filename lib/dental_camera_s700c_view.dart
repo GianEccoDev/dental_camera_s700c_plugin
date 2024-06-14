@@ -424,7 +424,7 @@ class _S700cViewState extends State<S700cView> {
       final videoPath = '${directory.path}/recorded_video.mp4';
 
       final command =
-          '-r 24 -i $framePathTemplate -vf "fps=8,format=yuv420p" -y $videoPath';
+          '-r 8 -i $framePathTemplate -vf "fps=8,format=yuv420p" -y $videoPath';
 
       await _flutterFFmpeg.execute(command).then((rc) async {
         if (rc == 0) {
