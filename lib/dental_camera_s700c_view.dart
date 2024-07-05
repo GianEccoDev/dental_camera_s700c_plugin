@@ -377,9 +377,10 @@ class _S700cViewState extends State<S700cView> {
             });
             throw Exception("Failed to export frames");
           }
-
+          final time = DateTime.now().toIso8601String();
           final directory = await getTemporaryDirectory();
-          final framePathTemplate = '${directory.path}/DentalCam_%03d.png';
+          final framePathTemplate =
+              '${directory.path}/DentalCam_${time}_%03d.png';
 
           for (int i = 0; i < frames.length; i++) {
             final framePath = framePathTemplate.replaceAll(
@@ -424,7 +425,7 @@ class _S700cViewState extends State<S700cView> {
       final videoPath = '${directory.path}/recorded_video.mp4';
 
       final command =
-          '-r 8 -i $framePathTemplate -vf "fps=8,format=yuv420p" -y $videoPath';
+          '-r 5 -i $framePathTemplate -vf "fps=5,format=yuv420p" -y $videoPath';
 
       await _flutterFFmpeg.execute(command).then((rc) async {
         if (rc == 0) {
@@ -687,6 +688,16 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                   decoration: BoxDecoration(
                       color: Colors.red.withOpacity(0.7),
                       shape: BoxShape.circle),
+                  child: Center(
+                    child: Container(
+                      height: 65,
+                      width: 65,
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 2, color: Colors.black),
+                          // color: Colors.yellow,
+                          shape: BoxShape.circle),
+                    ),
+                  ),
                 ),
               ),
               Expanded(
