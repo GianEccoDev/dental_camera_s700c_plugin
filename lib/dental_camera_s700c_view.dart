@@ -14,8 +14,8 @@ import 'package:gal/gal.dart';
 bool _isRecording = false;
 
 class S700cView extends StatefulWidget {
-  const S700cView({super.key});
-
+  const S700cView({super.key, this.fps = 7});
+  final int fps;
   @override
   State<S700cView> createState() => _S700cViewState();
 }
@@ -425,7 +425,7 @@ class _S700cViewState extends State<S700cView> {
       final videoPath = '${directory.path}/recorded_video.mp4';
 
       final command =
-          '-r 5 -i $framePathTemplate -vf "fps=5,format=yuv420p" -y $videoPath';
+          '-r ${widget.fps} -i $framePathTemplate -vf "fps=${widget.fps},format=yuv420p" -y $videoPath';
 
       await _flutterFFmpeg.execute(command).then((rc) async {
         if (rc == 0) {
