@@ -14,8 +14,8 @@ import 'package:gal/gal.dart';
 bool _isRecording = false;
 
 class S700cView extends StatefulWidget {
-  const S700cView({super.key, this.fps = 8});
-  final int fps;
+  const S700cView({super.key});
+
   @override
   State<S700cView> createState() => _S700cViewState();
 }
@@ -30,11 +30,6 @@ class _S700cViewState extends State<S700cView> {
   bool get canExport => _screenRecorderController.exporter.hasFrames;
   Timer? _timer;
   int _recordDuration = 0;
-  String get fileName {
-    final now = DateTime.now();
-
-    return 'dental_cam_${now.year}-${now.month}-${now.day}_${now.hour}-${now.minute}-${now.second}-${now.microsecond}';
-  }
 
   @override
   void initState() {
@@ -190,7 +185,7 @@ class _S700cViewState extends State<S700cView> {
   Future<void> _saveImage(Uint8List imageData) async {
     try {
       final directory = await getTemporaryDirectory();
-      final imagePath = '${directory.path}/$fileName.png';
+      final imagePath = '${directory.path}/temp_image.png';
       final file = File(imagePath);
       await file.writeAsBytes(imageData);
       bool result = true;
@@ -202,10 +197,9 @@ class _S700cViewState extends State<S700cView> {
 
       if (result) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-                "Immagine salvata con successo ${imagePath.split('/').last}"),
-            duration: const Duration(seconds: 2),
+          const SnackBar(
+            content: Text("Immagine salvata con successo"),
+            duration: Duration(seconds: 2),
           ),
         );
       } else {
@@ -230,7 +224,7 @@ class _S700cViewState extends State<S700cView> {
   Future<void> _saveVideo(Uint8List videoData) async {
     try {
       final directory = await getTemporaryDirectory();
-      final videoPath = '${directory.path}/$fileName.mp4';
+      final videoPath = '${directory.path}/dental_Cam.mp4';
       final file = File(videoPath);
       await file.writeAsBytes(videoData);
       bool result = true;
@@ -242,10 +236,9 @@ class _S700cViewState extends State<S700cView> {
 
       if (result) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content:
-                Text("Video salvato con successo ${videoPath.split('/').last}"),
-            duration: const Duration(seconds: 2),
+          const SnackBar(
+            content: Text("Video salvato con successo"),
+            duration: Duration(seconds: 2),
           ),
         );
       } else {
@@ -384,10 +377,9 @@ class _S700cViewState extends State<S700cView> {
             });
             throw Exception("Failed to export frames");
           }
-          final time = DateTime.now().toIso8601String();
+
           final directory = await getTemporaryDirectory();
-          final framePathTemplate =
-              '${directory.path}/DentalCam_${time}_%03d.png';
+          final framePathTemplate = '${directory.path}/DentalCam_%03d.png';
 
           for (int i = 0; i < frames.length; i++) {
             final framePath = framePathTemplate.replaceAll(
@@ -429,10 +421,10 @@ class _S700cViewState extends State<S700cView> {
   Future<void> _convertFramesToVideo(String framePathTemplate) async {
     try {
       final directory = await getTemporaryDirectory();
-      final videoPath = '${directory.path}/$fileName.mp4';
+      final videoPath = '${directory.path}/recorded_video.mp4';
 
       final command =
-          '-r 8 -i $framePathTemplate -vf "fps=${widget.fps},format=yuv420p" -y $videoPath';
+          '-r 8 -i $framePathTemplate -vf "fps=8,format=yuv420p" -y $videoPath';
 
       await _flutterFFmpeg.execute(command).then((rc) async {
         if (rc == 0) {
@@ -445,10 +437,9 @@ class _S700cViewState extends State<S700cView> {
 
           if (result) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                    "Video salvato con successo ${videoPath.split('/').last}"),
-                duration: const Duration(seconds: 2),
+              const SnackBar(
+                content: Text("Video salvato con successo"),
+                duration: Duration(seconds: 2),
               ),
             );
           } else {
@@ -696,16 +687,6 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                   decoration: BoxDecoration(
                       color: Colors.red.withOpacity(0.7),
                       shape: BoxShape.circle),
-                  child: Center(
-                    child: Container(
-                      height: 65,
-                      width: 65,
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 2, color: Colors.black),
-                          // color: Colors.yellow,
-                          shape: BoxShape.circle),
-                    ),
-                  ),
                 ),
               ),
               Expanded(

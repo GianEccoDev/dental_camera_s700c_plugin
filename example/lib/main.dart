@@ -40,9 +40,7 @@ class Home extends StatelessWidget {
           child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const S700cView(
-                      //  fps: 7,
-                      ),
+                  builder: (context) => const S700cView(),
                 ));
               },
               child: const Text('Inizia')),
