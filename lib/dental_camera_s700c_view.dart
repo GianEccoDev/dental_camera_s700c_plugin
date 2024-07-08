@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
+import 'package:ffmpeg_kit_flutter/return_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:open_settings_plus/core/open_settings_plus.dart';
@@ -8,11 +9,13 @@ import 'package:screen_recorder/screen_recorder.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:flutter_ffmpeg/flutter_ffmpeg.dart';
 import 'package:gal/gal.dart';
+import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
 
 bool _isRecording = false;
 
+///v 0.1
+///https://ffmpeg.org/ffmpeg.html
 class S700cView extends StatefulWidget {
   const S700cView({super.key});
 
@@ -22,7 +25,7 @@ class S700cView extends StatefulWidget {
 
 class _S700cViewState extends State<S700cView> {
   static const platform = MethodChannel('dental_camera_s700c_plugin');
-  final FlutterFFmpeg _flutterFFmpeg = FlutterFFmpeg();
+  //final FlutterFFmpeg _flutterFFmpeg = FlutterFFmpeg();
   bool isExporting = false;
   double angle = 0.0;
   final ScreenRecorderController _screenRecorderController =
@@ -423,14 +426,26 @@ class _S700cViewState extends State<S700cView> {
       final directory = await getTemporaryDirectory();
       final videoPath = '${directory.path}/recorded_video.mp4';
 
-      final command =
-          '-r 8 -i $framePathTemplate -vf "fps=8,format=yuv420p" -y $videoPath';
+// -i input.flv -vcodec libvpx -acodec libvorbis output.webm
+//-i file1.mp4 -c:v mpeg4
+//-r 8 -i $framePathTemplate -vf "fps=${widget.fps},format=yuv420p" -y $videoPath
+      final command = '-i $framePathTemplate  -y $videoPath';
 
-      await _flutterFFmpeg.execute(command).then((rc) async {
-        if (rc == 0) {
+      await FFmpegKit.execute(command).then((session) async {
+        final rc = await session.getReturnCode();
+        if (ReturnCode.isSuccess(rc)) {
           bool result = true;
           try {
-            await Gal.putVideo(videoPath);
+            final filePath = '${directory.path}/Dental_Video.webm';
+            //-c:v libvpx-vp9
+            final convertCommand =
+                '-i $videoPath -vf "fps=7,format=yuv420p" -y $filePath';
+            await FFmpegKit.execute(convertCommand).then((s) async {
+              final esit = await s.getReturnCode();
+              if (!ReturnCode.isSuccess(esit)) throw '';
+
+              await Gal.putVideo(filePath);
+            });
           } catch (e) {
             result = false;
           }
@@ -452,7 +467,7 @@ class _S700cViewState extends State<S700cView> {
           }
           await File(videoPath).delete();
         } else {
-          //print("[DEBUG] FFmpeg process failed with return code $rc");
+          print("[DEBUG] FFmpeg process failed with return code ${rc}");
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text("Errore durante la conversione del video"),
@@ -462,7 +477,7 @@ class _S700cViewState extends State<S700cView> {
         }
       });
     } catch (e) {
-      // print("[DEBUG] Error during frame to video conversion: $e");
+      print("[DEBUG] Error during frame to video conversion: $e");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("Errore durante la conversione del video: $e"),
