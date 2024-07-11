@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
-import 'package:ffmpeg_kit_flutter/return_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:open_settings_plus/core/open_settings_plus.dart';
@@ -10,7 +9,10 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:gal/gal.dart';
-import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
+// import 'package:ffmpeg_kit_flutter_full_gpl/ffmpeg_kit.dart';
+// import 'package:ffmpeg_kit_flutter_full_gpl/return_code.dart';
+import 'package:flutter_quick_video_encoder/flutter_quick_video_encoder.dart';
+import 'dart:ui' as ui;
 
 bool _isRecording = false;
 
@@ -33,6 +35,11 @@ class _S700cViewState extends State<S700cView> {
   bool get canExport => _screenRecorderController.exporter.hasFrames;
   Timer? _timer;
   int _recordDuration = 0;
+  String get fileName {
+    final now = DateTime.now();
+
+    return 'dental_cam_${now.year}${now.month.toString().padLeft(2, '0')}${now.day.toString().padLeft(2, '0')}${now.hour.toString().padLeft(2, '0')}${now.minute.toString().padLeft(2, '0')}${now.second.toString().padLeft(2, '0')}${now.microsecond.toString().padLeft(6, '0')}';
+  }
 
   @override
   void initState() {
@@ -224,6 +231,7 @@ class _S700cViewState extends State<S700cView> {
     }
   }
 
+//piattaforma IOS
   Future<void> _saveVideo(Uint8List videoData) async {
     try {
       final directory = await getTemporaryDirectory();
@@ -382,7 +390,7 @@ class _S700cViewState extends State<S700cView> {
           }
 
           final directory = await getTemporaryDirectory();
-          final framePathTemplate = '${directory.path}/DentalCam_%03d.png';
+          final framePathTemplate = '${directory.path}/${fileName}_%03d.png';
 
           for (int i = 0; i < frames.length; i++) {
             final framePath = framePathTemplate.replaceAll(
@@ -391,7 +399,7 @@ class _S700cViewState extends State<S700cView> {
             await file.writeAsBytes(frames[i].image.buffer.asUint8List());
           }
 
-          await _convertFramesToVideo(framePathTemplate);
+          await _convertFramesToVideo(framePathTemplate, frames.length);
         } catch (e) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -421,70 +429,96 @@ class _S700cViewState extends State<S700cView> {
     }
   }
 
-  Future<void> _convertFramesToVideo(String framePathTemplate) async {
+  Future<void> _convertFramesToVideo(
+      String framePathTemplate, int frameCount) async {
     try {
       final directory = await getTemporaryDirectory();
-      final videoPath = '${directory.path}/recorded_video.mp4';
+      final videoPath = '${directory.path}/${fileName}.mp4';
 
-// -i input.flv -vcodec libvpx -acodec libvorbis output.webm
-//-i file1.mp4 -c:v mpeg4
-//-r 8 -i $framePathTemplate -vf "fps=${widget.fps},format=yuv420p" -y $videoPath
-      final command = '-i $framePathTemplate  -y $videoPath';
-
-      await FFmpegKit.execute(command).then((session) async {
-        final rc = await session.getReturnCode();
-        if (ReturnCode.isSuccess(rc)) {
-          bool result = true;
-          try {
-            final filePath = '${directory.path}/Dental_Video.webm';
-            //-c:v libvpx-vp9
-            final convertCommand =
-                '-i $videoPath -vf "fps=7,format=yuv420p" -y $filePath';
-            await FFmpegKit.execute(convertCommand).then((s) async {
-              final esit = await s.getReturnCode();
-              if (!ReturnCode.isSuccess(esit)) throw '';
-
-              await Gal.putVideo(filePath);
-            });
-          } catch (e) {
-            result = false;
-          }
-
-          if (result) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("Video salvato con successo"),
-                duration: Duration(seconds: 2),
-              ),
-            );
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("Salvataggio video fallito"),
-                duration: Duration(seconds: 2),
-              ),
-            );
-          }
-          await File(videoPath).delete();
-        } else {
-          print("[DEBUG] FFmpeg process failed with return code ${rc}");
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Errore durante la conversione del video"),
-              duration: Duration(seconds: 2),
-            ),
-          );
-        }
-      });
-    } catch (e) {
-      print("[DEBUG] Error during frame to video conversion: $e");
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Errore durante la conversione del video: $e"),
-          duration: const Duration(seconds: 2),
-        ),
+      await FlutterQuickVideoEncoder.setup(
+        width: 640,
+        height: 480,
+        fps: 8,
+        videoBitrate: 1000000,
+        profileLevel: ProfileLevel.any,
+        audioBitrate: 0,
+        audioChannels: 0,
+        sampleRate: 0,
+        filepath: videoPath,
       );
+
+      print("Encoder setup completed.");
+
+      for (int i = 0; i < frameCount; i++) {
+        final framePath =
+            framePathTemplate.replaceAll('%03d', i.toString().padLeft(3, '0'));
+        Uint8List? rawData = await convertPngToRawRGBA(framePath, 640, 480);
+        if (rawData == null) {
+          print("Failed to convert frame at path: $framePath");
+          continue;
+        }
+        await FlutterQuickVideoEncoder.appendVideoFrame(rawData);
+      }
+
+      await FlutterQuickVideoEncoder.finish();
+      print("Video encoding completed. Path: $videoPath");
+
+      await Gal.putVideo(videoPath);
+      bool result = true;
+      if (result) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Video salvato con successo"),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      } 
+    } catch (e) {
+      print("Error during video conversion: $e");
     }
+  }
+
+  Future<Uint8List?> convertPngToRawRGBA(
+      String pngFilePath, int width, int height) async {
+    try {
+      final fileData = await File(pngFilePath).readAsBytes();
+      final codec = await ui.instantiateImageCodec(fileData);
+      final frame = await codec.getNextFrame();
+      final resizedImage = await resizeImage(frame.image, width, height);
+      final byteData =
+          await resizedImage.toByteData(format: ui.ImageByteFormat.rawRgba);
+
+      print(
+          '[ALMA] Width: ${resizedImage.width}, Height: ${resizedImage.height}');
+
+      if (byteData != null && byteData.lengthInBytes == width * height * 4) {
+        return byteData.buffer.asUint8List();
+      } else {
+        print(
+            "[ALMA] Converted data length mismatch: ${byteData?.lengthInBytes}");
+        return null;
+      }
+    } catch (e) {
+      print("Error converting PNG to Raw RGBA: $e");
+      return null;
+    }
+  }
+
+  Future<ui.Image> resizeImage(
+      ui.Image image, int targetWidth, int targetHeight) async {
+    final recorder = ui.PictureRecorder();
+    final canvas = Canvas(
+        recorder,
+        Rect.fromPoints(Offset(0, 0),
+            Offset(targetWidth.toDouble(), targetHeight.toDouble())));
+    final paint = Paint();
+    final src =
+        Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble());
+    final dst =
+        Rect.fromLTWH(0, 0, targetWidth.toDouble(), targetHeight.toDouble());
+    canvas.drawImageRect(image, src, dst, paint);
+    final picture = recorder.endRecording();
+    return await picture.toImage(targetWidth, targetHeight);
   }
 
   Future<bool> _requestPermissions() async {
