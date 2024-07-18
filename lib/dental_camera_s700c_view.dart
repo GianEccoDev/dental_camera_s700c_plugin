@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:open_settings_plus/core/open_settings_plus.dart';
@@ -16,11 +17,18 @@ import 'dart:ui' as ui;
 
 bool _isRecording = false;
 
-///v 0.1
+///v 0.2
 ///https://ffmpeg.org/ffmpeg.html
 class S700cView extends StatefulWidget {
-  const S700cView({super.key});
+  const S700cView(
+      {super.key,
+      this.heightAndroid,
+      this.fpsAndroid,
+      this.videoBitrateAndroid});
+  final int? heightAndroid;
 
+  final int? fpsAndroid;
+  final int? videoBitrateAndroid;
   @override
   State<S700cView> createState() => _S700cViewState();
 }
@@ -195,7 +203,7 @@ class _S700cViewState extends State<S700cView> {
   Future<void> _saveImage(Uint8List imageData) async {
     try {
       final directory = await getTemporaryDirectory();
-      final imagePath = '${directory.path}/temp_image.png';
+      final imagePath = '${directory.path}/$fileName.png';
       final file = File(imagePath);
       await file.writeAsBytes(imageData);
       bool result = true;
@@ -235,7 +243,7 @@ class _S700cViewState extends State<S700cView> {
   Future<void> _saveVideo(Uint8List videoData) async {
     try {
       final directory = await getTemporaryDirectory();
-      final videoPath = '${directory.path}/dental_Cam.mp4';
+      final videoPath = '${directory.path}/$fileName.mp4';
       final file = File(videoPath);
       await file.writeAsBytes(videoData);
       bool result = true;
@@ -279,7 +287,7 @@ class _S700cViewState extends State<S700cView> {
         await platform.invokeMethod('foto_ios');
       }
     } catch (e) {
-      //print("Failed to capture photo: '${e}'.");
+      //log("Failed to capture photo: '${e}'.");
     }
   }
 
@@ -433,13 +441,14 @@ class _S700cViewState extends State<S700cView> {
       String framePathTemplate, int frameCount) async {
     try {
       final directory = await getTemporaryDirectory();
-      final videoPath = '${directory.path}/${fileName}.mp4';
-
+      final videoPath = '${directory.path}/$fileName.mp4';
+      int height = widget.heightAndroid ?? 640;
+      // const int width = 1920;
       await FlutterQuickVideoEncoder.setup(
-        width: 640,
-        height: 480,
-        fps: 8,
-        videoBitrate: 1000000,
+        width: height,
+        height: height,
+        fps: widget.fpsAndroid ?? 8,
+        videoBitrate: widget.videoBitrateAndroid ?? 1000000,
         profileLevel: ProfileLevel.any,
         audioBitrate: 0,
         audioChannels: 0,
@@ -447,21 +456,22 @@ class _S700cViewState extends State<S700cView> {
         filepath: videoPath,
       );
 
-      print("Encoder setup completed.");
+      log("Encoder setup completed.");
 
       for (int i = 0; i < frameCount; i++) {
         final framePath =
             framePathTemplate.replaceAll('%03d', i.toString().padLeft(3, '0'));
-        Uint8List? rawData = await convertPngToRawRGBA(framePath, 640, 480);
+        Uint8List? rawData =
+            await convertPngToRawRGBA(framePath, height, height);
         if (rawData == null) {
-          print("Failed to convert frame at path: $framePath");
+          log("Failed to convert frame at path: $framePath");
           continue;
         }
         await FlutterQuickVideoEncoder.appendVideoFrame(rawData);
       }
 
       await FlutterQuickVideoEncoder.finish();
-      print("Video encoding completed. Path: $videoPath");
+      log("Video encoding completed. Path: $videoPath");
 
       await Gal.putVideo(videoPath);
       bool result = true;
@@ -472,9 +482,15 @@ class _S700cViewState extends State<S700cView> {
             duration: Duration(seconds: 2),
           ),
         );
-      } 
+      }
     } catch (e) {
-      print("Error during video conversion: $e");
+      log("Error during video conversion: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Salvataggio video fallito"),
+          duration: Duration(seconds: 2),
+        ),
+      );
     }
   }
 
@@ -488,18 +504,16 @@ class _S700cViewState extends State<S700cView> {
       final byteData =
           await resizedImage.toByteData(format: ui.ImageByteFormat.rawRgba);
 
-      print(
-          '[ALMA] Width: ${resizedImage.width}, Height: ${resizedImage.height}');
+      log('[ALMA] Width: ${resizedImage.width}, Height: ${resizedImage.height}');
 
       if (byteData != null && byteData.lengthInBytes == width * height * 4) {
         return byteData.buffer.asUint8List();
       } else {
-        print(
-            "[ALMA] Converted data length mismatch: ${byteData?.lengthInBytes}");
+        log("[ALMA] Converted data length mismatch: ${byteData?.lengthInBytes}");
         return null;
       }
     } catch (e) {
-      print("Error converting PNG to Raw RGBA: $e");
+      log("Error converting PNG to Raw RGBA: $e");
       return null;
     }
   }
@@ -509,7 +523,7 @@ class _S700cViewState extends State<S700cView> {
     final recorder = ui.PictureRecorder();
     final canvas = Canvas(
         recorder,
-        Rect.fromPoints(Offset(0, 0),
+        Rect.fromPoints(const Offset(0, 0),
             Offset(targetWidth.toDouble(), targetHeight.toDouble())));
     final paint = Paint();
     final src =
@@ -544,6 +558,7 @@ class _S700cViewState extends State<S700cView> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
@@ -736,6 +751,16 @@ class __FinalButtonRowState extends State<_FinalButtonRow> {
                   decoration: BoxDecoration(
                       color: Colors.red.withOpacity(0.7),
                       shape: BoxShape.circle),
+                  child: Center(
+                    child: Container(
+                      height: 65,
+                      width: 65,
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 2, color: Colors.black),
+                          // color: Colors.yellow,
+                          shape: BoxShape.circle),
+                    ),
+                  ),
                 ),
               ),
               Expanded(
